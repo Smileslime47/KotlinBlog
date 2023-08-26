@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d6b016e8-51a2-44ad-9f1f-c2f89bd5ecfc" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/constant/Constant.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/entity/Article.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/entity/Category.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/entity/ResponseResult.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/vo/CategoryVo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/enums/AppHttpCodeEnum.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/mapper/ArticleMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/mapper/CategoryMapper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/ArticleService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/CategoryService.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/impl/ArticleServiceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/impl/CategoryServiceImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/utils/BeanCopyUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-framework/src/test/kotlin/moe/saikyo47/KtFrameworkApplicationTests.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/KtFrontstageApplication.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/ArticleController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/CategoryController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/test/kotlin/moe/saikyo47/KtFrontstageApplicationTests.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Interface" />
+        <option value="Class" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/kt-frontstage" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="2S6TJxkHCmyYRYmjhB8l5FmgCUR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "openjdk-19",
+    "last_opened_file_path": "D:/blog/KotlinBlog/kotlinblog-backend",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "全局库",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.kotlinCompiler",
+    "spring.configuration.checksum": "17a22d49484fe9295298c2ac4f27eece",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
+    ]
+  }
+}]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="moe.saikyo47.domain.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.KtFrontstageApplication">
+    <configuration name="DemoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.DemoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KtFrameworkApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="kt-framework" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="moe.saikyo47.ktframework.KtFrameworkApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="KtFrontstageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="kt-frontstage" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="moe.saikyo47.KtFrontstageApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="d6b016e8-51a2-44ad-9f1f-c2f89bd5ecfc" name="更改" comment="" />
+      <created>1688465965861</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688465965861</updated>
+      <workItem from="1688465965862" duration="7283000" />
+      <workItem from="1688482307581" duration="2862000" />
+      <workItem from="1688485210595" duration="590000" />
+      <workItem from="1688730422274" duration="31000" />
+      <workItem from="1688795977058" duration="11000" />
+      <workItem from="1690019046356" duration="2747000" />
+      <workItem from="1690089973508" duration="2166000" />
+      <workItem from="1690095150265" duration="11722000" />
+      <workItem from="1690606996617" duration="19000" />
+      <workItem from="1693026585779" duration="858000" />
+      <workItem from="1693029432206" duration="210000" />
+      <workItem from="1693029753906" duration="92000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/ArticleController.kt</url>
+          <line>26</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/ArticleController.kt</url>
+          <line>19</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/impl/ArticleServiceImpl.kt</url>
+          <line>22</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

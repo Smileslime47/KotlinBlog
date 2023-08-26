@@ -1,0 +1,23 @@
+server:
+  port: 7777
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/47saikyo?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 5MB
+mybatis-plus:
+  configuration:
+    # ??
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+
