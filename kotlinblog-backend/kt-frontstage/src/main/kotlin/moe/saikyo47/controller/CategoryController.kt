@@ -20,20 +20,25 @@ class CategoryController {
     @Autowired
     lateinit var categoryService: CategoryService
 
-    @GetMapping("/parent")
-    fun getParentCategories():ResponseResult<List<CategoryVo>>{
+    /**
+     * 获取所有父级分类
+     */
+    @GetMapping("/parent-category")
+    fun getParentCategories(): ResponseResult<List<CategoryVo>> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
-            BeanCopyUtils.beanListCopy(categoryService.getParentCategoryList(),CategoryVo::class.java)
+            BeanCopyUtils.beanListCopy(categoryService.getParentCategoryList(), CategoryVo::class.java)
         )
     }
 
-    @GetMapping("/subcategory")
-    fun getSubcategories(parentId:Long):ResponseResult<List<CategoryVo>>{
+    /**
+     * 获取所有子级分类
+     */
+    @GetMapping("/sub-category")
+    fun getSubcategories(parentId: Long): ResponseResult<List<CategoryVo>> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
-            BeanCopyUtils.beanListCopy(categoryService.getSubcategoryList(parentId),CategoryVo::class.java)
+            BeanCopyUtils.beanListCopy(categoryService.getSubcategoryList(parentId), CategoryVo::class.java)
         )
     }
-
 }

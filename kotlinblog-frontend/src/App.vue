@@ -31,13 +31,6 @@
   flex-grow: 1;/*铺满剩余空间*/
 }
 </style>
-<script setup>
-import {useRouter} from "vue-router";
 
-const router=useRouter()
-const test = () => {
-  router.push({
-    path:"/Article"
-  })
-}
+<script setup>
 </script>

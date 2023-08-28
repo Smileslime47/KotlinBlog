@@ -5,48 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6b016e8-51a2-44ad-9f1f-c2f89bd5ecfc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/constant/Constant.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/entity/Article.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/entity/Category.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/entity/ResponseResult.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/domain/vo/CategoryVo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/enums/AppHttpCodeEnum.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/mapper/ArticleMapper.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/mapper/CategoryMapper.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/ArticleService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/CategoryService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/impl/ArticleServiceImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/impl/CategoryServiceImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/utils/BeanCopyUtils.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-framework/src/test/kotlin/moe/saikyo47/KtFrameworkApplicationTests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/KtFrontstageApplication.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/ArticleController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/CategoryController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kt-frontstage/src/test/kotlin/moe/saikyo47/KtFrontstageApplicationTests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/MdTextArea.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/SideCard/FrameCard.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Archive.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/styles/tokyo-night-dark.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/ProfileCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/SideCard/ProfileCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/layouts/BaseHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/layouts/BaseHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/layouts/BaseSide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/layouts/BaseSide.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Article.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Article.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/router/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/router/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +36,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/kt-frontstage" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -77,36 +50,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "openjdk-19",
-    "last_opened_file_path": "D:/blog/KotlinBlog/kotlinblog-backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "全局库",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.kotlinCompiler",
-    "spring.configuration.checksum": "17a22d49484fe9295298c2ac4f27eece",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;openjdk-19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/blog/KotlinBlog/kotlinblog-backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;全局库&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.kotlinCompiler&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;17a22d49484fe9295298c2ac4f27eece&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mariadb"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -158,6 +131,11 @@
       <workItem from="1693026585779" duration="858000" />
       <workItem from="1693029432206" duration="210000" />
       <workItem from="1693029753906" duration="92000" />
+      <workItem from="1693029960590" duration="2050000" />
+      <workItem from="1693049523357" duration="3846000" />
+      <workItem from="1693111054101" duration="4081000" />
+      <workItem from="1693121910477" duration="6209000" />
+      <workItem from="1693229222280" duration="2717000" />
     </task>
     <servers />
   </component>
@@ -169,18 +147,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/ArticleController.kt</url>
-          <line>26</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kt-frontstage/src/main/kotlin/moe/saikyo47/controller/ArticleController.kt</url>
-          <line>19</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kt-framework/src/main/kotlin/moe/saikyo47/service/impl/ArticleServiceImpl.kt</url>
-          <line>22</line>
-          <option name="timeStamp" value="7" />
+          <line>36</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

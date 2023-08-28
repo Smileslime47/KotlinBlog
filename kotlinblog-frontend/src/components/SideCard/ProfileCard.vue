@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
 
-
 const githubProfileLink = ref("https://github.com/Smileslime47")
 const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
 </script>
@@ -11,13 +10,13 @@ const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
     <template #header>
       <div class="card-header">
         <el-space direction="vertical">
-          <el-avatar :size="100" src="avatar.jpg" />
+          <el-avatar :size="100" src="avatar.jpg"/>
           <el-text tag="b" size="large">Smile_slime_47</el-text>
         </el-space>
       </div>
     </template>
 
-    <div class="card-container">
+    <div class="profile-card-container">
       <el-space>
         <el-link :href="githubProfileLink">
           <el-image style="width: 30px; height: 30px" fit="fill" src="github.svg"/>
@@ -31,15 +30,17 @@ const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
 </template>
 
 <style>
-.ep-card{
-  margin:10px
+.ep-card {
+  margin: 10px
 }
+
 .card-header {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.card-container {
+
+.profile-card-container {
   display: flex;
   flex-direction: row;
   justify-content: center;

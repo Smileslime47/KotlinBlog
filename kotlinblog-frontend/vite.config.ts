@@ -36,7 +36,7 @@ export default defineConfig({
     Components({
       // allow auto load markdown components under `./src/components/`
       extensions: ['vue', 'md'],
-      // allow auto import and register components used in markdown
+      // 导入并编译Markdown文件
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
       resolvers: [
         ElementPlusResolver({
@@ -45,7 +45,6 @@ export default defineConfig({
       ],
       dts: 'src/components.d.ts',
     }),
-
     // https://github.com/antfu/unocss
     // see unocss.config.ts for config
     Unocss({

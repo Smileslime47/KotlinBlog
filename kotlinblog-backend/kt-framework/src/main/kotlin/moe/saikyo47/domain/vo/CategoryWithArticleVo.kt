@@ -1,6 +1,6 @@
 package moe.saikyo47.domain.vo
 
-data class CategoryVo(
+data class CategoryWithArticleVo(
     //分类主键
     var id: Long? = null,
     //分类名
@@ -9,5 +9,6 @@ data class CategoryVo(
     var parent: Long? = null,
     //分类描述
     var description: String? = null,
+    //分类下的全部文章
+    var articleList: List<ArticleBriefVo>? = null,
 )
-

@@ -7,9 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Article: typeof import('./page/Article.vue')['default']
+    Article: typeof import('./page/Archive.vue')['default']
     BaseHeader: typeof import('./components/layouts/BaseHeader.vue')['default']
     BaseSide: typeof import('./components/layouts/BaseSide.vue')['default']
+    ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElCard: typeof import('element-plus/es')['ElCard']
@@ -38,12 +39,14 @@ declare module 'vue' {
     ElText: typeof import('element-plus/es')['ElText']
     ElTimeline: typeof import('element-plus/es')['ElTimeline']
     ElTimelineItem: typeof import('element-plus/es')['ElTimelineItem']
+    FrameCard: typeof import('./components/SideCard/FrameCard.vue')['default']
     Home: typeof import('./page/Homepage.vue')['default']
     HomeBanner: typeof import('./page/Homepage.vue')['default']
     Homepage: typeof import('./page/Homepage.vue')['default']
     HomePanel: typeof import('./components/HomePanel.vue')['default']
     Logos: typeof import('./components/Logos.vue')['default']
-    ProfileCard: typeof import('./components/ProfileCard.vue')['default']
+    MdTextArea: typeof import('./components/MdTextArea.vue')['default']
+    ProfileCard: typeof import('./components/SideCard/ProfileCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

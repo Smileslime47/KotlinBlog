@@ -1,5 +1,5 @@
 // @ts-ignore
-import { createRouter, createWebHashHistory, RouterOptions, Router, RouteRecordRaw } from 'vue-router'
+import {createRouter, createWebHashHistory, RouterOptions, Router, RouteRecordRaw} from 'vue-router'
 import routes from "~/router/route";
 
 // RouterOptions是路由选项类型

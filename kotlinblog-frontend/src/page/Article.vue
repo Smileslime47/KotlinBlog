@@ -1,48 +1,61 @@
 <script setup lang="ts">
-import {onMounted} from "vue";
-import {useRoute, useRouter} from "vue-router";
+import {onMounted, ref} from "vue";
+import {useRoute} from "vue-router";
+import FrameCard from "~/components/SideCard/FrameCard.vue";
 import axios from "axios";
 
-const route=useRoute()
+const route = useRoute()
+const articleId = ref(route.params.aid)
+const article = ref({
+  id: "",
+  title: "",
+  createTime: ""
+})
 
-onMounted(async ()=>{
-  console.log(route)
+onMounted(async () => {
   await axios.request({
-    method:'get',
-    url:'http://localhost:7777/article/all-by-parent',
-    params:{
-      path:route.path
+    method: 'get',
+    url: 'http://localhost:7777/article/info-by-id',
+    params: {
+      articleId: articleId.value
     }
   }).then((response) => {
-    console.log(response.data)
+    article.value = response.data.data
   })
 })
 </script>
 
 <template>
-  <div class="HomePanel">
-    <el-row>
-      <el-col :offset="0" :span="18">
-        <el-timeline>
-          <el-timeline-item timestamp="2018/4/12" placement="top">
-            <el-card>
-              <h4>Update Github template</h4>
-              <p>Tom committed 2018/4/12 20:46</p>
-            </el-card>
-          </el-timeline-item>
-        </el-timeline>
-      </el-col>
-
-      <el-col :span="6">
-        <ProfileCard/>
-      </el-col>
-    </el-row>
-  </div>
+  <el-container>
+    <el-aside width="400px">
+      <BaseSide/>
+    </el-aside>
+    <el-main>
+      <div class="HomePanel">
+        <el-card>
+          <template #header>
+            <div class="title">
+              <span>{{ article.title }}</span>
+            </div>
+            <el-text>{{ article.createTime }}</el-text>
+          </template>
+          <MdTextArea :articleId="articleId"></MdTextArea>
+        </el-card>
+      </div>
+    </el-main>
+  </el-container>
 </template>
 
 <style scoped>
-.HomePanel{
-  margin-top:10px;
-  padding:10px 20px
+.HomePanel {
+  margin-top: 10px;
+  padding: 10px 20px
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
 }
 </style>
