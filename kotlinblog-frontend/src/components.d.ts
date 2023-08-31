@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AdaptiveIcon: typeof import('./components/Common/AdaptiveIcon.vue')['default']
     Article: typeof import('./page/Archive.vue')['default']
     BaseHeader: typeof import('~/components/Navigation/TopNavBar.vue')['default']
     BaseSide: typeof import('~/components/Navigation/SideNavBar.vue')['default']

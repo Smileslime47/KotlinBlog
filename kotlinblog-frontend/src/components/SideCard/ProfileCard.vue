@@ -29,10 +29,10 @@ const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
     <div class="profile-card-container">
       <el-space>
         <el-link :href="githubProfileLink">
-          <el-image style="width: 30px; height: 30px" fit="fill" src="github.svg"/>
+          <AdaptiveIcon size="30px" src="github.svg"/>
         </el-link>
         <el-link :href="leetCodeProfileLink">
-          <el-image style="width: 30px; height: 30px" fit="fill" src="leetcode.svg"/>
+          <AdaptiveIcon size="30px" src="leetcode.svg"/>
         </el-link>
       </el-space>
     </div>

@@ -5,30 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d6b016e8-51a2-44ad-9f1f-c2f89bd5ecfc" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/.env.development" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/Constant.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/auto-imports.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Aboutpage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/InfoPage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/server/http.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/Common/AdaptiveIcon.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/Logos.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/MdTextArea.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/Common/MdTextArea.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/SideCard/FrameCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/SideCard/FrameCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/SideCard/ProfileCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/SideCard/ProfileCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/layouts/BaseHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/Navigation/TopNavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/layouts/BaseSide.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/components/Navigation/SideNavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/composables/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/env.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/env.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Archive.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Archive.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Article.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/page/Article.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/router/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/router/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/styles/element/dark.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/styles/element/dark.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/styles/element/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/styles/element/index.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/src/styles/index.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/src/styles/index.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlinblog-frontend/vite.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlinblog-frontend/vite.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +128,7 @@
       <workItem from="1693229222280" duration="2717000" />
       <workItem from="1693402256839" duration="1860000" />
       <workItem from="1693411179029" duration="2431000" />
-      <workItem from="1693490117908" duration="2773000" />
+      <workItem from="1693490117908" duration="3965000" />
     </task>
     <servers />
   </component>

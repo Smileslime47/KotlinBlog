@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import Constant from "~/Constant";
+import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
+import router from "~/router/router";
 
 const route = useRoute()
 
@@ -14,9 +15,11 @@ const switchCollapse = () => {
 }
 
 //初始加载或者改变分类ID时刷新文章列表
+const rootArticles = ref([])
 const subCategories = ref([])
 onMounted(async () => await freshArticleList(parentId.value))
 onBeforeRouteUpdate(async (to, from) => await freshArticleList(to.params.cid))
+const routeArticle = (articleId) => router.push("/article/" + route.params.cid + "/" + articleId)
 const freshArticleList = async (cid) => {
   await httpService.get(
       Constant.category.api + Constant.category.getSubCategories,
@@ -37,9 +40,21 @@ const freshArticleList = async (cid) => {
         })
         .then((response) => {
           subCategory.articles = response.data.data
-          console.log(subCategory.articles)
         })
   }
+
+  await httpService.get(
+      Constant.article.api + Constant.article.getInfoByCategory,
+      {
+        params: {
+          id: cid,
+          deep: false
+        }
+      })
+      .then((response) => {
+        rootArticles.value = []
+        rootArticles.value.push(...response.data.data)
+      })
 }
 </script>
 
@@ -58,6 +73,13 @@ const freshArticleList = async (cid) => {
     <ProfileCard v-if="asideCollapse"/>
     <FrameCard v-if="asideCollapse"/>
 
+    <el-menu-item v-if="!asideCollapse" v-for="article in rootArticles" @click="routeArticle(article.id)">
+      <el-icon>
+        <i-ep-Document/>
+      </el-icon>
+      {{ article.title }}
+    </el-menu-item>
+
     <el-sub-menu :index="(index+2).toString()" v-if="!asideCollapse"
                  v-for="[index,subCategory] in subCategories.entries()">
       <template #title>
@@ -68,7 +90,7 @@ const freshArticleList = async (cid) => {
           {{ subCategory.name }}
         </el-text>
       </template>
-      <el-menu-item v-for="article in subCategory.articles">
+      <el-menu-item v-for="article in subCategory.articles" @click="routeArticle(article.id)">
         <el-icon>
           <i-ep-Document/>
         </el-icon>

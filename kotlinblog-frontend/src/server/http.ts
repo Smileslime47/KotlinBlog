@@ -1,5 +1,5 @@
 import axios from "axios";
-import Constant from "~/Constant";
+import Constant from "~/constant/Constant";
 
 const httpService = axios.create({
     baseURL: Constant.BASE_URL, //基础公共URL

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Constant from "~/Constant";
+import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import InfoPage from "~/page/InfoPage.vue";
 

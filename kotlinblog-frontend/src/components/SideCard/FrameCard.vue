@@ -1,15 +1,5 @@
 <script setup lang="ts">
-import {useDark} from "@vueuse/core";
-const isReverse = ref("")
-useDark({
-  onChanged(dark: boolean) {
-    if (dark) {
-      isReverse.value = "invert(1)"
-    } else {
-      isReverse.value = ""
-    }
-  },
-})
+import '~/styles/index.scss'
 </script>
 
 <template>
@@ -24,22 +14,26 @@ useDark({
 
     <div class="frame-card-container">
       <el-space direction="vertical">
-        <el-text style="font-size: 35px">
-          <el-image style="width: 30px; height: 30px" fit="fill" src="kotlin.svg"/>Kotlin
-        </el-text>
-        <el-text style="font-size: 20px">
-          with SpringBoot,MybatisPlus ...
-        </el-text>
+          <el-text style="height:35px;font-size: 35px;vertical-align:central">
+            <AdaptiveIcon size="30px" src="kotlin.svg"/>
+            Kotlin
+          </el-text>
+          <el-text style="font-size: 20px">
+            with SpringBoot,MybatisPlus ...
+          </el-text>
+
 
         <el-text style="font-size: 35px">
-          <el-image style="width: 30px; height: 30px" fit="fill" src="typescript.svg"/>TypeScript
+          <AdaptiveIcon size="30px" src="typescript.svg"/>
+          TypeScript
         </el-text>
-        <el-text style="font-size: 20px">
+        <el-text class="icon" style="font-size: 20px">
           with Vue3,Element-Plus,Vite ...
         </el-text>
 
         <el-text style="font-size: 35px">
-          <el-image style="width: 30px; height: 30px" fit="fill" src="digitalocean.svg"/>Digital Ocean
+          <AdaptiveIcon size="30px" src="digitalocean.svg"/>
+          Digital Ocean
         </el-text>
         <el-text style="font-size: 20px">
           with Ubuntu ...
@@ -61,11 +55,5 @@ useDark({
 .frame-card-container {
   display: flex;
   flex-direction: column;
-  //justify-content: center;
-}
-
-.ep-image {
-  --reverse: v-bind(isReverse);
-  filter: var(--reverse);
 }
 </style>

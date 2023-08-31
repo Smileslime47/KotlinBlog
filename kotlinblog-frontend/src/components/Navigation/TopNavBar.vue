@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {toggleDark} from "~/composables/dark";
-import Constant from "~/Constant";
+import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import {useDark} from "@vueuse/core";
 
