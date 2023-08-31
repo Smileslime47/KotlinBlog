@@ -3,7 +3,7 @@ package moe.saikyo47.controller
 import moe.saikyo47.domain.entity.Article
 import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.domain.vo.ArticleBriefVo
-import moe.saikyo47.domain.vo.ArticleDetailedVo
+import moe.saikyo47.domain.vo.ArticleDetailVo
 import moe.saikyo47.enums.AppHttpCodeEnum
 import moe.saikyo47.service.ArticleService
 import moe.saikyo47.utils.BeanCopyUtils
@@ -15,49 +15,37 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @CrossOrigin
-@RequestMapping("/article")
+@RequestMapping("/api/article")
 class ArticleController {
     @Autowired
     lateinit var articleService: ArticleService
 
-    /**
-     * 根据分类获取对应分类下的全部文章
-     */
-    @GetMapping("/all-by-parent")
-    fun getAllByParent(path: String): ResponseResult<List<ArticleBriefVo>> {
-        val parentId = path.replace("/", "").toLong()
+    @GetMapping("/info/category")
+    fun getInfoByCategory(id: Long, deep: Boolean): ResponseResult<List<ArticleBriefVo>> {
+        val searchStrategy: (id: Long) -> List<Article> =
+            if (deep)
+                articleService::getArticleByRootCategory
+            else
+                articleService::getArticleByDirectCategory
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
-            BeanCopyUtils.beanListCopy(articleService.getArticleByDeepCategory(parentId), ArticleBriefVo::class.java)
+            BeanCopyUtils.beanListCopy(searchStrategy(id), ArticleBriefVo::class.java)
         )
     }
 
-    @GetMapping("/all-by-subcategory")
-    fun getAllBySubCategory(categoryId: Long): ResponseResult<List<ArticleBriefVo>> {
+    @GetMapping("/info/article")
+    fun getInfoById(id: Long): ResponseResult<ArticleBriefVo> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
-            BeanCopyUtils.beanListCopy(articleService.getArticleByDirectCategory(categoryId), ArticleBriefVo::class.java)
+            BeanCopyUtils.beanCopy(articleService.getArticleById(id), ArticleBriefVo::class.java)
         )
     }
 
-    @GetMapping("/info-by-id")
-    fun getInfoById(articleId: Long): ResponseResult<ArticleBriefVo> {
+    @GetMapping("/detail/article")
+    fun getDetailById(id: Long): ResponseResult<ArticleDetailVo> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
-            BeanCopyUtils.beanCopy(articleService.getArticleById(articleId), ArticleBriefVo::class.java)
+            BeanCopyUtils.beanCopy(articleService.getArticleById(id), ArticleDetailVo::class.java)
         )
-    }
-
-    @GetMapping("/article-by-id")
-    fun getArticleById(articleId: Long): ResponseResult<ArticleDetailedVo> {
-        return ResponseResult(
-            AppHttpCodeEnum.SUCCESS,
-                BeanCopyUtils.beanCopy(articleService.getArticleById(articleId), ArticleDetailedVo::class.java)
-        )
-    }
-
-    @GetMapping("/list")
-    fun list(): List<Article> {
-        return articleService.list()
     }
 }

@@ -2,7 +2,7 @@
   <el-config-provider namespace="ep">
     <el-container>
       <el-header>
-        <BaseHeader />
+        <TopNavBar />
       </el-header>
 
       <el-main>

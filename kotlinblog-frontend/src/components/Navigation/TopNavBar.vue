@@ -1,45 +1,40 @@
 <script lang="ts" setup>
-import {isDark, toggleDark} from "~/composables";
-import {onMounted, ref} from "vue";
-import {useRoute, useRouter} from "vue-router";
-import axios from "axios";
+import {toggleDark} from "~/composables/dark";
+import Constant from "~/Constant";
+import httpService from "~/server/http";
+import {useDark} from "@vueuse/core";
 
-const navColor = ref()
 const router = useRouter()
-const route = useRoute()
+
+//黑暗模式
+const navColor = ref()
+useDark({
+  onChanged(dark: boolean) {
+    if (dark) {
+      navColor.value = "#323232"
+    } else {
+      navColor.value = "#FFFFFF"
+    }
+  },
+})
 const toggleDarkTheme = () => {
   toggleDark();
-  if (isDark.value) {
-    navColor.value = "#323232"
-  } else {
-    navColor.value = "#FFFFFF"
-  }
 }
 
-onMounted(() => {
-  if (isDark.value) {
-    navColor.value = "#323232"
-  } else {
-    navColor.value = "#FFFFFF"
-  }
-  getCategories()
-})
-
-//切换至特定分类归档页
-const routerArchive = (id) => {
-  router.push("/category/" + id)
-}
-
-//切换至主页
-const routerHomepage = () => {
-  router.push("/Home")
-}
-
+onMounted(() => getCategories())
 //初始化分类列表
 const categoryList = ref([])
-
+//切换至特定分类归档页
+const routerArchive = (id) => router.push("/category/" + id)
+//切换至主页
+const routerHomepage = () => router.push("/Home")
+//切换至关于页
+const routerAbout = () => router.push("/About")
+//获取所有根分类
 const getCategories = async () => {
-  await axios.get("http://localhost:7777/category/parent-category").then((response) => {
+  await httpService.get(
+      Constant.BASE_URL + Constant.category.api + Constant.category.getRootCategories
+  ).then((response) => {
     categoryList.value.push(...response.data.data)
   })
 }
@@ -55,6 +50,10 @@ const getCategories = async () => {
 
     <el-menu-item @click="routerArchive(parent.id)" v-for="parent in categoryList">
       <template #title>{{ parent.name }}</template>
+    </el-menu-item>
+
+    <el-menu-item @click="routerAbout">
+      <template #title>About</template>
     </el-menu-item>
 
     <el-divider direction="vertical"/>

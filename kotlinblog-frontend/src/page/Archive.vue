@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {useRoute, useRouter, onBeforeRouteUpdate} from "vue-router";
-import axios from "axios";
-import FrameCard from "~/components/SideCard/FrameCard.vue";
+import Constant from "~/Constant";
+import httpService from "~/server/http";
+import InfoPage from "~/page/InfoPage.vue";
 
 const route = useRoute()
 const router = useRouter()
@@ -16,19 +15,22 @@ const routeArticle = (articleId) => {
 
 //根据指定CID刷新文章列表
 const freshArticleList = async (cid) => {
-  await axios.request({
-    method: 'get',
-    url: 'http://localhost:7777/article/all-by-parent',
-    params: {
-      path: cid
-    }
-  }).then((response) => {
-    articleList.value = []
-    //将获取到的文章列表加入List
-    articleList.value.push(...response.data.data)
-    //根据日期排序文章列表
-    articleList.value.sort((a, b) => a.createTime <= b.createTime ? 1 : -1)
-  })
+  console.log(Constant.BASE_URL + Constant.article.api + Constant.article.getInfoByCategory,)
+  await httpService.get(
+      Constant.article.api + Constant.article.getInfoByCategory,
+      {
+        params: {
+          id: cid,
+          deep: true,
+        }
+      })
+      .then((response) => {
+        articleList.value = []
+        //将获取到的文章列表加入List
+        articleList.value.push(...response.data.data)
+        //根据日期排序文章列表
+        articleList.value.sort((a, b) => a.createTime <= b.createTime ? 1 : -1)
+      })
 }
 
 //初始化分类ID及文章列表
@@ -44,22 +46,17 @@ onBeforeRouteUpdate(async (to, from) => {
 </script>
 
 <template>
-  <el-container>
-    <el-aside width="400px">
-      <BaseSide/>
-    </el-aside>
-    <el-main>
-      <div class="HomePanel">
-        <el-timeline>
-          <el-timeline-item v-for="article in articleList" :timestamp="article.createTime" placement="top">
-            <el-card>
-              <el-link @click="routeArticle(article.id)">{{ article.title }}</el-link>
-            </el-card>
-          </el-timeline-item>
-        </el-timeline>
-      </div>
-    </el-main>
-  </el-container>
+  <InfoPage>
+    <div class="HomePanel">
+      <el-timeline>
+        <el-timeline-item v-for="article in articleList" :timestamp="article.createTime" placement="top">
+          <el-card>
+            <el-link @click="routeArticle(article.id)">{{ article.title }}</el-link>
+          </el-card>
+        </el-timeline-item>
+      </el-timeline>
+    </div>
+  </InfoPage>
 </template>
 
 <style scoped>

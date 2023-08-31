@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
-import {useRoute} from "vue-router";
-import FrameCard from "~/components/SideCard/FrameCard.vue";
-import axios from "axios";
+import Constant from "~/Constant";
+import httpService from "~/server/http";
+import InfoPage from "~/page/InfoPage.vue";
 
 const route = useRoute()
+const router = useRouter()
+const parentId = ref(route.params.cid)
 const articleId = ref(route.params.aid)
 const article = ref({
   id: "",
@@ -12,38 +13,39 @@ const article = ref({
   createTime: ""
 })
 
+const backToArchive = ( ) => router.push("/category/" + parentId.value)
+
+
 onMounted(async () => {
-  await axios.request({
-    method: 'get',
-    url: 'http://localhost:7777/article/info-by-id',
-    params: {
-      articleId: articleId.value
-    }
-  }).then((response) => {
-    article.value = response.data.data
-  })
+  await httpService.get(
+      Constant.article.api + Constant.article.getInfoById,
+      {
+        params: {id: articleId.value}
+      })
+      .then((response) => {
+        article.value = response.data.data
+      })
 })
 </script>
 
 <template>
-  <el-container>
-    <el-aside width="400px">
-      <BaseSide/>
-    </el-aside>
-    <el-main>
-      <div class="HomePanel">
-        <el-card>
-          <template #header>
-            <div class="title">
-              <span>{{ article.title }}</span>
-            </div>
+  <InfoPage>
+    <div class="HomePanel">
+      <el-card>
+        <template #header>
+          <div class="card-header">
+            <el-page-header @click="backToArchive">
+              <template #content>
+                <span class="text-large font-600 mr-3"> {{ article.title }} </span>
+              </template>
+            </el-page-header>
             <el-text>{{ article.createTime }}</el-text>
-          </template>
-          <MdTextArea :articleId="articleId"></MdTextArea>
-        </el-card>
-      </div>
-    </el-main>
-  </el-container>
+          </div>
+        </template>
+        <MdTextArea :articleId="articleId"></MdTextArea>
+      </el-card>
+    </div>
+  </InfoPage>
 </template>
 
 <style scoped>
@@ -52,10 +54,10 @@ onMounted(async () => {
   padding: 10px 20px
 }
 
-.title {
+.card-header {
+  flex-direction: row;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 30px;
 }
 </style>

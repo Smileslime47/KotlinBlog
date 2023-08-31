@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import {ref} from "vue";
+import {useDark} from "@vueuse/core";
+const isReverse = ref("")
+useDark({
+  onChanged(dark: boolean) {
+    if (dark) {
+      isReverse.value = "invert(1)"
+    } else {
+      isReverse.value = ""
+    }
+  },
+})
 
 const githubProfileLink = ref("https://github.com/Smileslime47")
 const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
@@ -44,5 +54,10 @@ const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.ep-image {
+  --reverse: v-bind(isReverse);
+  filter: var(--reverse);
 }
 </style>

@@ -8,8 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Article: typeof import('./page/Archive.vue')['default']
-    BaseHeader: typeof import('./components/layouts/BaseHeader.vue')['default']
-    BaseSide: typeof import('./components/layouts/BaseSide.vue')['default']
+    BaseHeader: typeof import('~/components/Navigation/TopNavBar.vue')['default']
+    BaseSide: typeof import('~/components/Navigation/SideNavBar.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -28,6 +28,7 @@ declare module 'vue' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
+    ElPageHeader: typeof import('element-plus/es')['ElPageHeader']
     ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElRow: typeof import('element-plus/es')['ElRow']
@@ -44,10 +45,16 @@ declare module 'vue' {
     HomeBanner: typeof import('./page/Homepage.vue')['default']
     Homepage: typeof import('./page/Homepage.vue')['default']
     HomePanel: typeof import('./components/HomePanel.vue')['default']
-    Logos: typeof import('./components/Logos.vue')['default']
-    MdTextArea: typeof import('./components/MdTextArea.vue')['default']
+    IEpArrowLeftBold: typeof import('~icons/ep/arrow-left-bold')['default']
+    IEpArrowRightBold: typeof import('~icons/ep/arrow-right-bold')['default']
+    IEpDocument: typeof import('~icons/ep/document')['default']
+    IEpFolder: typeof import('~icons/ep/folder')['default']
+    IEpLocation: typeof import('~icons/ep/location')['default']
+    MdTextArea: typeof import('./components/Common/MdTextArea.vue')['default']
     ProfileCard: typeof import('./components/SideCard/ProfileCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SideNavBar: typeof import('./components/Navigation/SideNavBar.vue')['default']
+    TopNavBar: typeof import('./components/Navigation/TopNavBar.vue')['default']
   }
 }

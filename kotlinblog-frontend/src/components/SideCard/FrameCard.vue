@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import {useDark} from "@vueuse/core";
+const isReverse = ref("")
+useDark({
+  onChanged(dark: boolean) {
+    if (dark) {
+      isReverse.value = "invert(1)"
+    } else {
+      isReverse.value = ""
+    }
+  },
+})
 </script>
 
 <template>
@@ -38,7 +49,7 @@
   </el-card>
 </template>
 
-<style>
+<style scoped>
 .ep-card{
   margin:10px
 }
@@ -51,5 +62,10 @@
   display: flex;
   flex-direction: column;
   //justify-content: center;
+}
+
+.ep-image {
+  --reverse: v-bind(isReverse);
+  filter: var(--reverse);
 }
 </style>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import {onMounted, ref, shallowRef} from "vue";
-import axios from "axios";
 import MarkDownIt from "markdown-it";
 import hljs from "markdown-it-highlightjs";
 import mathjax from "markdown-it-mathjax3";
 
-import '../styles/tokyo-night-dark.css'
+import '~/styles/tokyo-night-dark.css'
+import Constant from "~/Constant";
+import httpService from "~/server/http";
 
 const props = defineProps(["articleId"])
 const articleTitle = ref()
@@ -13,18 +13,18 @@ const articleContent = ref()
 const htmlCode = shallowRef()
 
 const md = MarkDownIt()
-    .use(hljs, { inline: true })
+    .use(hljs, {inline: true})
     .use(mathjax)
 
 
 onMounted(async () => {
-  await axios.request({
-    method: 'get',
-    url: 'http://localhost:7777/article/article-by-id',
-    params: {
-      articleId: props.articleId
-    }
-  }).then((response) => {
+  await httpService.get(
+      Constant.BASE_URL + Constant.article.api + Constant.article.getDetailById,
+      {
+        params: {
+          id: props.articleId
+        }
+      }).then((response) => {
     articleContent.value = response.data.data.content
     articleTitle.value = response.data.data.title
     htmlCode.value = md.render(articleContent.value)
@@ -33,7 +33,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="mdText" v-html="htmlCode"></div>
+  <div class="mdText" v-html="htmlCode"></div>
 </template>
 
 <style scoped>

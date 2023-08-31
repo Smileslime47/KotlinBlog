@@ -20,7 +20,7 @@ class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService
      * @param parentId 父分类ID
      * @return 分类直接为或直属于parentId下的文章列表
      */
-    override fun getArticleByDeepCategory(parentId: Long): List<Article> {
+    override fun getArticleByRootCategory(parentId: Long): List<Article> {
         //获取属于父分类ID下的全部子分类
         val categoryList = categoryService.getSubcategoryList(parentId)
 
