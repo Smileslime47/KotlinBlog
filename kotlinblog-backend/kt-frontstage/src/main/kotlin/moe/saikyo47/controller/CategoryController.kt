@@ -25,7 +25,7 @@ class CategoryController {
     fun getRootCategories(): ResponseResult<List<CategoryVo>> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
-            BeanCopyUtils.beanListCopy(categoryService.getParentCategoryList(), CategoryVo::class.java)
+            BeanCopyUtils.beanListCopy(categoryService.getRootCategories(), CategoryVo::class.java)
         )
     }
 
@@ -36,7 +36,18 @@ class CategoryController {
     fun getSubCategories(id: Long): ResponseResult<List<CategoryVo>> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
-            BeanCopyUtils.beanListCopy(categoryService.getSubcategoryList(id), CategoryVo::class.java)
+            BeanCopyUtils.beanListCopy(categoryService.getSubCategories(id), CategoryVo::class.java)
+        )
+    }
+
+    /**
+     * 获取该分类的根分类
+     */
+    @GetMapping("/root-category")
+    fun getRootCategory(id:Long): ResponseResult<CategoryVo> {
+        return ResponseResult(
+            AppHttpCodeEnum.SUCCESS,
+            BeanCopyUtils.beanCopy(categoryService.getRootCategory(id), CategoryVo::class.java)
         )
     }
 }

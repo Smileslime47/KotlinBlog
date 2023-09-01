@@ -20,6 +20,12 @@ class ArticleController {
     @Autowired
     lateinit var articleService: ArticleService
 
+    /**
+     * 根据分类获取分类下文章的简要信息
+     * 
+     * @param id 分类ID
+     * @param deep 是否搜索该分类下所有子分类的文章，若为false，则只搜索文章中所属分类ID为id的文章
+     */
     @GetMapping("/info/category")
     fun getInfoByCategory(id: Long, deep: Boolean): ResponseResult<List<ArticleBriefVo>> {
         val searchStrategy: (id: Long) -> List<Article> =
@@ -33,6 +39,11 @@ class ArticleController {
         )
     }
 
+    /**
+     * 根据文章ID获取文章的简要信息
+     * 
+     * @param id 文章ID
+     */
     @GetMapping("/info/article")
     fun getInfoById(id: Long): ResponseResult<ArticleBriefVo> {
         return ResponseResult(
@@ -41,6 +52,11 @@ class ArticleController {
         )
     }
 
+    /**
+     * 根据文章ID获取文章的详细信息，包括文章内容
+     * 
+     * @param id 文章ID
+     */
     @GetMapping("/detail/article")
     fun getDetailById(id: Long): ResponseResult<ArticleDetailVo> {
         return ResponseResult(

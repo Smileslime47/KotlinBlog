@@ -10,6 +10,7 @@ import moe.saikyo47.domain.entity.Category
  * @since 2023-07-23 15:03:46
  */
 interface CategoryService : IService<Category>{
-    fun getParentCategoryList(): List<Category>
-    fun getSubcategoryList(parentId: Long): List<Category>
+    fun getRootCategories(): List<Category>
+    fun getSubCategories(parentId: Long): List<Category>
+    fun getRootCategory(categoryId:Long):Category
 }

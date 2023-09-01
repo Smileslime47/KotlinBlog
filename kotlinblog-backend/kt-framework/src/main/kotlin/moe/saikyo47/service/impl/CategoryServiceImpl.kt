@@ -15,16 +15,20 @@ import org.springframework.stereotype.Service
  */
 @Service
 class CategoryServiceImpl : ServiceImpl<CategoryMapper, Category>(), CategoryService {
+    @Autowired
+    lateinit var articleService: ArticleService
+
     /**
      * 获取父分类列表
      *
      * @return 父分类Id为-1（即无父分类）的全部分类列表
      */
-    override fun getParentCategoryList(): List<Category> {
+    override fun getRootCategories(): List<Category> {
+        val categoryWrapper:QueryWrapper<Category> = QueryWrapper()
         //从分类表中获取有效的分类，且无上级父分类
-        return list().filter { category ->
-            category.isAvailable == Constant.CATEGORY_IS_AVAILABILE && category.parent == (-1).toLong()
-        }
+        categoryWrapper.eq("isAvailable",Constant.CATEGORY_IS_AVAILABILE).and().eq("parent",(-1).toLong())
+
+        return list(categoryWrapper)
     }
 
     /**
@@ -33,10 +37,26 @@ class CategoryServiceImpl : ServiceImpl<CategoryMapper, Category>(), CategorySer
      * @param parentId 父分类Id
      * @return 父分类为parentId的全部分类列表
      */
-    override fun getSubcategoryList(parentId: Long): List<Category> {
+    override fun getSubCategories(parentId: Long): List<Category> {
+        val categoryWrapper:QueryWrapper<Category> = QueryWrapper()
         //从分类表中获取有效的分类，且上级父分类为指定父分类ID
-        return list().filter { category ->
-            category.isAvailable == Constant.CATEGORY_IS_AVAILABILE && category.parent == parentId
+        categoryWrapper.eq("isAvailable",Constant.CATEGORY_IS_AVAILABILE).and().eq("parent",parentId)
+
+        return list(categoryWrapper)
+    }
+
+    override fun getRootCategory(categoryId:Long):Category{
+        var cid=categoryId
+        var categoryWrapper:QueryWrapper<Category> = QueryWrapper()
+        categoryWrapper.eq("id",categoryId)
+        var category:Category = getOne(categoryWrapper)
+
+        while(category.parent != -1){
+            categoryWrapper = QueryWrapper()
+            categoryWrapper.eq("id",category.parent)
+            category = getOne(categoryWrapper)
         }
+
+        return category
     }
 }

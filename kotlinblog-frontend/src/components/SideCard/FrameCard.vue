@@ -22,7 +22,6 @@ import '~/styles/index.scss'
             with SpringBoot,MybatisPlus ...
           </el-text>
 
-
         <el-text style="font-size: 35px">
           <AdaptiveIcon size="30px" src="typescript.svg"/>
           TypeScript

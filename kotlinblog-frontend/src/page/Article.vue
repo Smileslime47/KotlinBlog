@@ -2,30 +2,46 @@
 import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import InfoPage from "~/page/InfoPage.vue";
+import {getPathParam} from "~/router/route";
 
-const route = useRoute()
-const router = useRouter()
-const parentId = ref(route.params.cid)
-const articleId = ref(route.params.aid)
+const directCategory = ref()
+const rootCategory = ref()
+const articleId = ref()
 const article = ref({
   id: "",
   title: "",
   createTime: ""
 })
 
-const backToArchive = ( ) => router.push("/category/" + parentId.value)
-
-
-onMounted(async () => {
+const fresh()=>{
+  //获取文章ID
+  articleId.value = getPathParam("aid")
+  //获取直接分类ID
+  directCategory.value = getPathParam("cid")
+  //获取根分类ID
+  await httpService.get(
+      Constant.category.api + Constant.category.getRootCategory,
+      {
+        params: {id: getPathParam("cid")}
+      })
+      .then((response) => {
+        rootCategory.value = response.data.data.id
+      })
+  //获取文章信息
   await httpService.get(
       Constant.article.api + Constant.article.getInfoById,
       {
-        params: {id: articleId.value}
+        params: {id: getPathParam("aid")}
       })
       .then((response) => {
         article.value = response.data.data
       })
-})
+}
+onMounted(async () => fresh())
+onBeforeRouteUpdate(async (to, from) => await fresh())
+
+//返回归档页
+const backToArchive = ( ) => routeTo.archive(rootCategory)
 </script>
 
 <template>

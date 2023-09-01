@@ -1,34 +1,37 @@
 <script lang="ts" setup>
 import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
-import router from "~/router/router";
+import routeTo from "~/router/routeTo";
 
-const route = useRoute()
-
-//根分类ID
-const parentId = ref(route.params.cid)
+const rootArticles = ref([])
+const subCategories = ref([])
+const directCategory = ref()
+const rootCategory = ref()
 
 //折叠状态
 const asideCollapse: any = ref(true)
-const switchCollapse = () => {
-  asideCollapse.value = !asideCollapse.value;
-}
+const switchCollapse = () => asideCollapse.value = !asideCollapse.value;
 
-//初始加载或者改变分类ID时刷新文章列表
-const rootArticles = ref([])
-const subCategories = ref([])
-onMounted(async () => await freshArticleList(parentId.value))
-onBeforeRouteUpdate(async (to, from) => await freshArticleList(to.params.cid))
-const routeArticle = (articleId) => router.push("/article/" + route.params.cid + "/" + articleId)
-const freshArticleList = async (cid) => {
+const fresh = async () => {
+  directCategory.value=getPathParam("cid")
+  //获取根分类ID
+  await httpService.get(
+    Constant.category.api + Constant.category.getRootCategory,
+    {
+      params: {id: getPathParam("cid")}
+    })
+    .then((response) => {
+      rootCategory.value = response.data.data.id
+    })
+  //获取根分类的子分类
   await httpService.get(
       Constant.category.api + Constant.category.getSubCategories,
-      {params: {id: cid}})
+      {params: {id: rootCategory.value}})
       .then((response) => {
         subCategories.value = []
         subCategories.value.push(...response.data.data)
       })
-
+  //获取子分类的文章列表
   for (const subCategory of subCategories.value) {
     await httpService.get(
         Constant.article.api + Constant.article.getInfoByCategory,
@@ -42,12 +45,12 @@ const freshArticleList = async (cid) => {
           subCategory.articles = response.data.data
         })
   }
-
+  //获取根分类的文章列表
   await httpService.get(
       Constant.article.api + Constant.article.getInfoByCategory,
       {
         params: {
-          id: cid,
+          id: rootCategory.value,
           deep: false
         }
       })
@@ -56,6 +59,8 @@ const freshArticleList = async (cid) => {
         rootArticles.value.push(...response.data.data)
       })
 }
+onMounted(async () => await fresh())
+onBeforeRouteUpdate(async (to, from) => await fresh())
 </script>
 
 <template>
@@ -73,7 +78,7 @@ const freshArticleList = async (cid) => {
     <ProfileCard v-if="asideCollapse"/>
     <FrameCard v-if="asideCollapse"/>
 
-    <el-menu-item v-if="!asideCollapse" v-for="article in rootArticles" @click="routeArticle(article.id)">
+    <el-menu-item v-if="!asideCollapse" v-for="article in rootArticles" @click="routeTo.article(article.category,article.id)">
       <el-icon>
         <i-ep-Document/>
       </el-icon>
@@ -90,7 +95,7 @@ const freshArticleList = async (cid) => {
           {{ subCategory.name }}
         </el-text>
       </template>
-      <el-menu-item v-for="article in subCategory.articles" @click="routeArticle(article.id)">
+      <el-menu-item v-for="article in subCategory.articles" @click="routeTo.article(article.category,article.id)">
         <el-icon>
           <i-ep-Document/>
         </el-icon>

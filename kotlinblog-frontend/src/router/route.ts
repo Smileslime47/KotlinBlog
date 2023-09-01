@@ -8,4 +8,6 @@ const routes: RouteRecordRaw[] = [
     {path: "/article/:cid/:aid", name: "article", component: () => import('~/page/Article.vue')}
 ]
 
+const getPathParam = (param) => useRoute().params[param]
+
 export default routes

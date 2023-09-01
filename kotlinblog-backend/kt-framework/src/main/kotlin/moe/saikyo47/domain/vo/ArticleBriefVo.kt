@@ -1,4 +1,4 @@
-package moe.saikyo47.domain.vo;
+package moe.saikyo47.domain.vo
 
 import com.baomidou.mybatisplus.annotation.TableId
 import java.time.LocalDate

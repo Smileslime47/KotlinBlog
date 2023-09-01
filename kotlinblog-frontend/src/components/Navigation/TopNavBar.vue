@@ -3,6 +3,7 @@ import {toggleDark} from "~/composables/dark";
 import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import {useDark} from "@vueuse/core";
+import routeTo from "~/router/routeTo";
 
 const router = useRouter()
 
@@ -21,15 +22,10 @@ const toggleDarkTheme = () => {
   toggleDark();
 }
 
+//挂载时获取根分类
 onMounted(() => getCategories())
 //初始化分类列表
 const categoryList = ref([])
-//切换至特定分类归档页
-const routerArchive = (id) => router.push("/category/" + id)
-//切换至主页
-const routerHomepage = () => router.push("/Home")
-//切换至关于页
-const routerAbout = () => router.push("/About")
 //获取所有根分类
 const getCategories = async () => {
   await httpService.get(
@@ -38,21 +34,20 @@ const getCategories = async () => {
     categoryList.value.push(...response.data.data)
   })
 }
-
 </script>
 <template>
   <el-menu :ellipsis="false" class="header-menu" mode="horizontal">
-    <el-button size="large" link @click="routerHomepage">
+    <el-button size="large" link @click="routeTo.home()">
       <el-text size="large" tag="b">47 Saikyo</el-text>
     </el-button>
 
     <div class="flex-grow"/>
 
-    <el-menu-item @click="routerArchive(parent.id)" v-for="parent in categoryList">
+    <el-menu-item @click="routeTo.archive(parent.id)" v-for="parent in categoryList">
       <template #title>{{ parent.name }}</template>
     </el-menu-item>
 
-    <el-menu-item @click="routerAbout">
+    <el-menu-item @click="routeTo.about()">
       <template #title>About</template>
     </el-menu-item>
 

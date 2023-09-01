@@ -40,7 +40,7 @@ httpService.interceptors.response.use(
     },
     (error) => {
         // 超出 2xx 范围的状态码都会触发该函数。
-        // 对响应错误做点什么
+        ElMessage.error("Http异常："+error.response.status+","+error.response.statusText)
         return Promise.reject(error);
     }
 );
