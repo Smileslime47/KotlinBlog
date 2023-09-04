@@ -3,26 +3,27 @@ import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import InfoPage from "~/page/InfoPage.vue";
 import {getPathParam} from "~/router/route";
+import routeTo from "~/router/routeTo";
+import fresh from "~/composables/fresh"
 
-const directCategory = ref()
+const articleId = ref(getPathParam("aid"))
+const directCategory = ref(getPathParam("cid"))
 const rootCategory = ref()
-const articleId = ref()
-const article = ref({
-  id: "",
-  title: "",
-  createTime: ""
+let article = ref({
+  title:"",
+  createTime:"",
+  updateTime:"",
+  
 })
 
-const fresh()=>{
-  //获取文章ID
-  articleId.value = getPathParam("aid")
-  //获取直接分类ID
-  directCategory.value = getPathParam("cid")
+fresh(async (route) => {
+  articleId.value = route.params.aid
+  directCategory.value = route.params.cid
   //获取根分类ID
   await httpService.get(
       Constant.category.api + Constant.category.getRootCategory,
       {
-        params: {id: getPathParam("cid")}
+        params: {id: directCategory.value}
       })
       .then((response) => {
         rootCategory.value = response.data.data.id
@@ -31,17 +32,15 @@ const fresh()=>{
   await httpService.get(
       Constant.article.api + Constant.article.getInfoById,
       {
-        params: {id: getPathParam("aid")}
+        params: {id: articleId.value}
       })
       .then((response) => {
         article.value = response.data.data
       })
-}
-onMounted(async () => fresh())
-onBeforeRouteUpdate(async (to, from) => await fresh())
+})
 
 //返回归档页
-const backToArchive = ( ) => routeTo.archive(rootCategory)
+const backToArchive = () => routeTo.archive(rootCategory.value)
 </script>
 
 <template>

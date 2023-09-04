@@ -2,6 +2,7 @@
 import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import routeTo from "~/router/routeTo";
+import fresh from "~/composables/fresh";
 
 const rootArticles = ref([])
 const subCategories = ref([])
@@ -12,17 +13,17 @@ const rootCategory = ref()
 const asideCollapse: any = ref(true)
 const switchCollapse = () => asideCollapse.value = !asideCollapse.value;
 
-const fresh = async () => {
-  directCategory.value=getPathParam("cid")
+fresh(async (route) => {
+  directCategory.value = route.params.cid
   //获取根分类ID
   await httpService.get(
-    Constant.category.api + Constant.category.getRootCategory,
-    {
-      params: {id: getPathParam("cid")}
-    })
-    .then((response) => {
-      rootCategory.value = response.data.data.id
-    })
+      Constant.category.api + Constant.category.getRootCategory,
+      {
+        params: {id: directCategory.value}
+      })
+      .then((response) => {
+        rootCategory.value = response.data.data.id
+      })
   //获取根分类的子分类
   await httpService.get(
       Constant.category.api + Constant.category.getSubCategories,
@@ -58,9 +59,7 @@ const fresh = async () => {
         rootArticles.value = []
         rootArticles.value.push(...response.data.data)
       })
-}
-onMounted(async () => await fresh())
-onBeforeRouteUpdate(async (to, from) => await fresh())
+})
 </script>
 
 <template>
@@ -78,7 +77,8 @@ onBeforeRouteUpdate(async (to, from) => await fresh())
     <ProfileCard v-if="asideCollapse"/>
     <FrameCard v-if="asideCollapse"/>
 
-    <el-menu-item v-if="!asideCollapse" v-for="article in rootArticles" @click="routeTo.article(article.category,article.id)">
+    <el-menu-item v-if="!asideCollapse" v-for="article in rootArticles"
+                  @click="routeTo.article(article.category,article.id)">
       <el-icon>
         <i-ep-Document/>
       </el-icon>

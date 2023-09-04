@@ -6,9 +6,9 @@ import '~/styles/tokyo-night-dark.css'
 
 import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
+import fresh from "~/composables/fresh";
 
 const props = defineProps(["articleId"])
-const articleTitle = ref()
 const articleContent = ref()
 const htmlCode = shallowRef()
 
@@ -18,17 +18,15 @@ const md = MarkDownIt()
     //Mathjax公式
     .use(mathjax)
 
-onMounted(async () => {
+fresh(async (route) => {
   //渲染文章
   await httpService.get(
-      Constant.BASE_URL + Constant.article.api + Constant.article.getDetailById,
+      Constant.article.api + Constant.article.getDetailById,
       {
         params: {
           id: props.articleId
         }
       }).then((response) => {
-    //获取文章标题
-    articleTitle.value = response.data.data.title
     //获取文章内容
     articleContent.value = response.data.data.content
     //渲染文章内容为HTML代码

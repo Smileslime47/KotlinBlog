@@ -5,8 +5,6 @@ import httpService from "~/server/http";
 import {useDark} from "@vueuse/core";
 import routeTo from "~/router/routeTo";
 
-const router = useRouter()
-
 //黑暗模式
 const navColor = ref()
 useDark({

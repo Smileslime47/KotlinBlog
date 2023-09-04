@@ -1,6 +1,6 @@
 import {RouteRecordRaw} from "vue-router";
 
-const routes: RouteRecordRaw[] = [
+export const routes: RouteRecordRaw[] = [
     {path: '/', redirect: 'Home'},
     {path: '/home', name: 'Home', component: () => import('~/page/Homepage.vue')},
     {path: '/about', name: 'About', component: () => import('~/page/Aboutpage.vue')},
@@ -8,6 +8,5 @@ const routes: RouteRecordRaw[] = [
     {path: "/article/:cid/:aid", name: "article", component: () => import('~/page/Article.vue')}
 ]
 
-const getPathParam = (param) => useRoute().params[param]
-
-export default routes
+// @ts-ignore
+export const getPathParam = (param) => useRoute().params[param]

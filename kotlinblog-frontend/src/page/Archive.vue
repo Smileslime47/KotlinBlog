@@ -3,29 +3,34 @@ import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import InfoPage from "~/page/InfoPage.vue";
 import routeTo from "~/router/routeTo";
+import {getPathParam} from "~/router/route"
+import {onBeforeRouteUpdate, useRoute} from "vue-router";
+import fresh from "~/composables/fresh"
 
 const articleList = ref([])
+const rootCategory = ref(getPathParam("cid"))
 
 //根据指定CID刷新文章列表
-const fresh = async () => {
+fresh(async (route) => {
+  rootCategory.value = route.params.cid
   await httpService.get(
       Constant.article.api + Constant.article.getInfoByCategory,
       {
         params: {
-          id: getPathParam("cid"),
+          id: rootCategory.value,
           deep: true,
         }
       })
       .then((response) => {
+        console.log(rootCategory.value)
         articleList.value = []
         //将获取到的文章列表加入List
         articleList.value.push(...response.data.data)
         //根据日期排序文章列表
         articleList.value.sort((a, b) => a.createTime <= b.createTime ? 1 : -1)
+        console.log(articleList.value)
       })
-}
-onMounted(async () => await fresh())
-onBeforeRouteUpdate(async (to, from) => await fresh())
+})
 </script>
 
 <template>

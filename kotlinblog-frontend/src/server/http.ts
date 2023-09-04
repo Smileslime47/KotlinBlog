@@ -3,7 +3,7 @@ import Constant from "~/constant/Constant";
 
 const httpService = axios.create({
     baseURL: Constant.BASE_URL, //基础公共URL
-    timeout: 1000,              //超时配置
+    timeout: 10000,              //超时配置
     withCredentials: false,      //跨域携带cookie
 })
 
