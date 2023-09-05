@@ -9,18 +9,13 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>kt-frontstage</artifactId>
+    <artifactId>kt-authentication</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>moe.saikyo47</groupId>
             <artifactId>kt-framework</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>moe.saikyo47</groupId>
-            <artifactId>kt-authentication</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

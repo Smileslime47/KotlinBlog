@@ -2,16 +2,21 @@ package moe.saikyo47.service.impl
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
+import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.entity.Article
 import moe.saikyo47.mapper.ArticleMapper
 import moe.saikyo47.service.ArticleService
 import moe.saikyo47.service.CategoryService
+import moe.saikyo47.utils.FileHandler
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
+import java.net.URL
 
 @Service
 class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService {
     @Autowired
+    @Lazy
     lateinit var categoryService: CategoryService
 
     /**
@@ -22,13 +27,13 @@ class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService
      */
     override fun getArticleByRootCategory(rootId: Long): List<Article> {
         //获取属于父分类ID下的全部子分类
-        val categoryList = categoryService.getSubcategoryList(parentId)
+        val categoryList = categoryService.getSubCategories(rootId)
 
         //获取父分类及全部子分类下的文章列表
         val articleWrapper: QueryWrapper<Article> = QueryWrapper()
-        articleWrapper.eq("category", parentId)
+        articleWrapper.eq(Constant.DataField.ARTICLE_CATEGORY, rootId)
         for (subcategory in categoryList) {
-            articleWrapper.or().eq("category", subcategory.id)
+            articleWrapper.or().eq(Constant.DataField.ARTICLE_CATEGORY, subcategory.id)
         }
 
         //返回文章列表
@@ -38,14 +43,19 @@ class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService
     override fun getArticleByDirectCategory(categoryId: Long): List<Article> {
         //获取父分类及全部子分类下的文章列表
         val articleWrapper: QueryWrapper<Article> = QueryWrapper()
-        articleWrapper.eq("category", categoryId)
+        articleWrapper.eq(Constant.DataField.ARTICLE_CATEGORY, categoryId)
         //返回文章列表
         return list(articleWrapper)
     }
 
     override fun getArticleById(articleId: Long): Article {
         val articleWrapper: QueryWrapper<Article> = QueryWrapper()
-        articleWrapper.eq("id", articleId)
-        return getOne(articleWrapper)
+        articleWrapper.eq(Constant.DataField.ARTICLE_ID, articleId)
+        val article = getOne(articleWrapper)
+        if (article.content?.startsWith("/") == true) {
+            val content = FileHandler.getTextFile(Constant.Environment.RESOURCE_PATH + article.content)
+            article.content = content
+        }
+        return article
     }
 }

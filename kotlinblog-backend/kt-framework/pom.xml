@@ -35,9 +35,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
 
+        <!--SpringSecurity启动器-->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <!--redis依赖-->
         <dependency>

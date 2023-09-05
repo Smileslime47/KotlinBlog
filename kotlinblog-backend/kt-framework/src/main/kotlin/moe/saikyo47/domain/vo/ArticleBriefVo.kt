@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.TableId
 import java.time.LocalDate
 import java.util.*
 
-
 data class ArticleBriefVo(
         //文章主键
         var id: Long? = null,

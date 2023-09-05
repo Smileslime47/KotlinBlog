@@ -12,6 +12,7 @@
     <modules>
         <module>kt-framework</module>
         <module>kt-frontstage</module>
+        <module>kt-authentication</module>
     </modules>
 
     <artifactId>kotlinblog-backend</artifactId>
@@ -53,12 +54,6 @@
                 <groupId>org.mariadb.jdbc</groupId>
                 <artifactId>mariadb-java-client</artifactId>
                 <version>3.1.4</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.28</version>
             </dependency>
 
             <!--fastjson依赖-->

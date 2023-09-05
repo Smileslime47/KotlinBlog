@@ -3,7 +3,7 @@ package moe.saikyo47.domain.vo
 import com.baomidou.mybatisplus.annotation.TableId
 import java.time.LocalDate
 
-data class ArticleDetailedVo(
+data class ArticleDetailVo(
     //文章主键
     var id: Long? = null,
     //文章标题
