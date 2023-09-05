@@ -11,6 +11,12 @@ import moe.saikyo47.utils.BeanCopyUtils
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 
+/**
+ * Category Controller类
+ *
+ * @author Smile_slime_47
+ * @since 2023-08-26
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("/api/category")
@@ -20,6 +26,8 @@ class CategoryController {
 
     /**
      * 获取所有父级分类
+     *
+     * 接口：/root-categories
      */
     @GetMapping("/root-categories")
     fun getRootCategories(): ResponseResult<List<CategoryVo>> {
@@ -31,6 +39,8 @@ class CategoryController {
 
     /**
      * 获取所有子级分类
+     *
+     * 接口：/sub-categories
      */
     @GetMapping("/sub-categories")
     fun getSubCategories(id: Long): ResponseResult<List<CategoryVo>> {
@@ -42,6 +52,8 @@ class CategoryController {
 
     /**
      * 获取该分类的根分类
+     *
+     * 接口：/root-category
      */
     @GetMapping("/root-category")
     fun getRootCategory(id:Long): ResponseResult<CategoryVo> {

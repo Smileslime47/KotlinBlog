@@ -4,6 +4,12 @@ import moe.saikyo47.domain.entity.User
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 
+/**
+ * UserDetail类，用于Spring Security的权限鉴定
+ *
+ * @author Smile_slime_47
+ * @since 2023-09-03
+ */
 class LoginUser(val user: User) : UserDetails {
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         TODO("Not yet implemented")

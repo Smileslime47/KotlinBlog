@@ -13,6 +13,14 @@ import org.springframework.stereotype.Service
 import java.lang.RuntimeException
 import java.util.Objects
 
+/**
+ * UserDetail Service实现类
+ * 用于覆盖Spring Security的默认实现类
+ * 在Database中获取用户信息并授权
+ *
+ * @author Smile_slime_47
+ * @since 2023-09-03
+ */
 @Service
 class UserDetailServiceImpl : UserDetailsService {
     @Autowired

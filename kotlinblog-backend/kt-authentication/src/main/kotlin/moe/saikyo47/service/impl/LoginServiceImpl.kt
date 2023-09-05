@@ -14,6 +14,12 @@ import org.springframework.stereotype.Service
 import java.lang.RuntimeException
 import java.util.*
 
+/**
+ * Login功能Service类
+ *
+ * @author Smile_slime_47
+ * @since 2023-09-03
+ */
 @Service
 class LoginServiceImpl : LoginService {
     @Autowired

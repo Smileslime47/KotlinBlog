@@ -10,9 +10,19 @@ import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
+
+/**
+ * Spring Security配置类
+ *
+ * @author Smile_slime_47
+ * @since 2023-09-03
+ */
 @Configuration
 @EnableWebSecurity
 class SecurityConfig {
+    /**
+     * Spring Security策略配置
+     */
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain =
         http
@@ -25,7 +35,9 @@ class SecurityConfig {
             //跨域访问策略
             .cors { cors ->
                 val corsConfiguration = CorsConfiguration()
+                //允许跨域携带Cookie
                 corsConfiguration.allowCredentials = true
+                //跨域访问允许的范围
                 corsConfiguration.allowedHeaders = listOf("*")
                 corsConfiguration.allowedMethods = listOf("*")
                 corsConfiguration.allowedOriginPatterns = listOf("*")
@@ -38,6 +50,9 @@ class SecurityConfig {
             }
             .build()
 
+    /**
+     * 注册AuthenticationManager Bean
+     */
     @Bean
     fun getAuthenticationManagerBean(http: HttpSecurity): AuthenticationManager =
         http.getSharedObject(AuthenticationManagerBuilder::class.java).build()
