@@ -1,6 +1,7 @@
 package moe.saikyo47.service.impl
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
+import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
 import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.entity.Article
@@ -30,10 +31,10 @@ class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService
         val categoryList = categoryService.getSubCategories(rootId)
 
         //获取父分类及全部子分类下的文章列表
-        val articleWrapper: QueryWrapper<Article> = QueryWrapper()
-        articleWrapper.eq(Constant.DataField.ARTICLE_CATEGORY, rootId)
+        val articleWrapper = KtQueryWrapper(Article())
+        articleWrapper.eq(Article::category, rootId)
         for (subcategory in categoryList) {
-            articleWrapper.or().eq(Constant.DataField.ARTICLE_CATEGORY, subcategory.id)
+            articleWrapper.or().eq(Article::category, subcategory.id)
         }
 
         //返回文章列表
@@ -41,16 +42,16 @@ class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService
     }
 
     override fun getArticleByDirectCategory(categoryId: Long): List<Article> {
-        //获取父分类及全部子分类下的文章列表
-        val articleWrapper: QueryWrapper<Article> = QueryWrapper()
-        articleWrapper.eq(Constant.DataField.ARTICLE_CATEGORY, categoryId)
+        //获取分类下的文章列表
+        val articleWrapper = KtQueryWrapper(Article())
+        articleWrapper.eq(Article::category, categoryId)
         //返回文章列表
         return list(articleWrapper)
     }
 
     override fun getArticleById(articleId: Long): Article {
-        val articleWrapper: QueryWrapper<Article> = QueryWrapper()
-        articleWrapper.eq(Constant.DataField.ARTICLE_ID, articleId)
+        val articleWrapper=KtQueryWrapper(Article())
+        articleWrapper.eq(Article::id, articleId)
         val article = getOne(articleWrapper)
         if (article.content?.startsWith("/") == true) {
             val content = FileHandler.getTextFile(Constant.Environment.RESOURCE_PATH + article.content)

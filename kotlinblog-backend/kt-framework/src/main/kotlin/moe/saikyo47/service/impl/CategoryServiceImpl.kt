@@ -1,6 +1,7 @@
 package moe.saikyo47.service.impl
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
+import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
 import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.entity.Category
@@ -19,19 +20,17 @@ import org.springframework.stereotype.Service
  */
 @Service
 class CategoryServiceImpl : ServiceImpl<CategoryMapper, Category>(), CategoryService {
-    @Autowired
-    @Lazy
-    lateinit var articleService: ArticleService
-
     /**
      * 获取父分类列表
      *
      * @return 父分类Id为-1（即无父分类）的全部分类列表
      */
     override fun getRootCategories(): List<Category> {
-        val categoryWrapper: QueryWrapper<Category> = QueryWrapper()
+        val categoryWrapper = KtQueryWrapper(Category())
         //从分类表中获取有效的分类，且无上级父分类
-        categoryWrapper.eq(Constant.DataField.CATEGORY_IS_AVAILABLE, Constant.CATEGORY_IS_AVAILABILE).eq("parent", (-1).toLong())
+        categoryWrapper
+            .eq(Category::isAvailable, Constant.CATEGORY_IS_AVAILABILE)
+            .eq(Category::parent, (-1).toLong())
 
         return list(categoryWrapper)
     }
@@ -43,24 +42,21 @@ class CategoryServiceImpl : ServiceImpl<CategoryMapper, Category>(), CategorySer
      * @return 父分类为parentId的全部分类列表
      */
     override fun getSubCategories(parentId: Long): List<Category> {
-        val categoryWrapper: QueryWrapper<Category> = QueryWrapper()
+        val categoryWrapper = KtQueryWrapper(Category())
         //从分类表中获取有效的分类，且上级父分类为指定父分类ID
         categoryWrapper
-            .eq(Constant.DataField.CATEGORY_IS_AVAILABLE, Constant.CATEGORY_IS_AVAILABILE)
-            .eq(Constant.DataField.CATEGORY_PARENT,parentId)
+            .eq(Category::isAvailable, Constant.CATEGORY_IS_AVAILABILE)
+            .eq(Category::parent, parentId)
 
         return list(categoryWrapper)
     }
 
     override fun getRootCategory(categoryId: Long): Category {
-        var cid = categoryId
-        var categoryWrapper: QueryWrapper<Category> = QueryWrapper()
-        categoryWrapper.eq(Constant.DataField.CATEGORY_ID, categoryId)
+        var categoryWrapper = KtQueryWrapper(Category()).eq(Category::id, categoryId)
         var category: Category = getOne(categoryWrapper)
 
         while (category.parent != (-1).toLong()) {
-            categoryWrapper = QueryWrapper()
-            categoryWrapper.eq(Constant.DataField.CATEGORY_ID, category.parent)
+            categoryWrapper = KtQueryWrapper(Category()).eq(Category::id, category.parent)
             category = getOne(categoryWrapper)
         }
 
