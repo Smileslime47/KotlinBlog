@@ -1,4 +1,4 @@
-package service;
+package moe.saikyo47.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import moe.saikyo47.domain.entity.User

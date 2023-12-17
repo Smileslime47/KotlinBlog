@@ -1,7 +1,7 @@
 package moe.saikyo47.service.impl
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
-import mapper.UserMapper
+import moe.saikyo47.mapper.UserMapper
 import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.dto.LoginUser
 import moe.saikyo47.domain.entity.User

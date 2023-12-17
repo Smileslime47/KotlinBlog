@@ -1,7 +1,7 @@
-package service;
+package moe.saikyo47.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import entity.Group
+import moe.saikyo47.domain.entity.Group
 
 /**
  * (Group)表服务接口

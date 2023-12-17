@@ -1,11 +1,11 @@
-package service.impl;
+package moe.saikyo47.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import mapper.UserMapper
+import moe.saikyo47.mapper.UserMapper
 import moe.saikyo47.domain.entity.User
 
 import org.springframework.stereotype.Service;
-import service.UserService
+import moe.saikyo47.service.UserService
 
 /**
  * (User)表服务实现类
