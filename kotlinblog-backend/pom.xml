@@ -66,8 +66,22 @@
             <!--jwt依赖-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>0.9.1</version>
+                <artifactId>jjwt-api</artifactId>
+                <version>0.12.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>0.12.3</version>
+                <scope>runtime</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>0.12.3</version>
+                <scope>runtime</scope>
             </dependency>
 
             <!--mybatisPlus依赖-->
@@ -131,9 +145,9 @@
                         </compilerPlugins>
                         <pluginOptions>
                             <!-- 指定为open的注解 -->
-<!--                            <option>all-open:annotation=com.my.Annotation</option>-->
+                            <!--                            <option>all-open:annotation=com.my.Annotation</option>-->
                             <!--指定生成无参构造器的注解-->
-<!--                            <option>no-arg:annotation=com.my.Annotation</option>-->
+                            <!--                            <option>no-arg:annotation=com.my.Annotation</option>-->
                         </pluginOptions>
                         <jvmTarget>17</jvmTarget>
                     </configuration>
@@ -162,7 +176,7 @@
                                     <!--Kotlin项目目录-->
                                     <sourceDir>src/main/kotlin</sourceDir>
                                     <!--Java混合项目目录-->
-<!--                                    <sourceDir>src/main/java</sourceDir>-->
+                                    <!--                                    <sourceDir>src/main/java</sourceDir>-->
                                 </sourceDirs>
                             </configuration>
                         </execution>
@@ -176,7 +190,7 @@
                                     <!--Kotlin项目目录-->
                                     <sourceDir>src/test/kotlin</sourceDir>
                                     <!--Java混合项目目录-->
-<!--                                    <sourceDir>src/test/java</sourceDir>-->
+                                    <!--                                    <sourceDir>src/test/java</sourceDir>-->
                                 </sourceDirs>
                             </configuration>
                         </execution>
