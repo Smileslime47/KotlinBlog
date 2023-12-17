@@ -12,6 +12,7 @@ const rootCategory = ref(getPathParam("cid"))
 
 //根据指定CID刷新文章列表
 fresh(async (route) => {
+  console.log(import.meta.env.VITE_ASSETS_URL)
   rootCategory.value = route.params.cid
   await httpService.get(
       Constant.article.api + Constant.article.getInfoByCategory,
