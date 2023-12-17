@@ -1,5 +1,6 @@
 package moe.saikyo47.controller
 
+import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.domain.vo.CategoryVo
 import moe.saikyo47.enums.AppHttpCodeEnum
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/api/category")
+@RequestMapping(Constant.ApiPath.CATEGORY_API)
 class CategoryController {
     @Autowired
     lateinit var categoryService: CategoryService
@@ -29,7 +30,7 @@ class CategoryController {
      *
      * 接口：/root-categories
      */
-    @GetMapping("/root-categories")
+    @GetMapping(Constant.ApiPath.CATEGORY_ROOT_CATEGORIES)
     fun getRootCategories(): ResponseResult<List<CategoryVo>> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
@@ -42,7 +43,7 @@ class CategoryController {
      *
      * 接口：/sub-categories
      */
-    @GetMapping("/sub-categories")
+    @GetMapping(Constant.ApiPath.CATEGORY_SUB_CATEGORIES)
     fun getSubCategories(id: Long): ResponseResult<List<CategoryVo>> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
@@ -55,8 +56,8 @@ class CategoryController {
      *
      * 接口：/root-category
      */
-    @GetMapping("/root-category")
-    fun getRootCategory(id:Long): ResponseResult<CategoryVo> {
+    @GetMapping(Constant.ApiPath.CATEGORY_ROOT_CATEGORY)
+    fun getRootCategory(id: Long): ResponseResult<CategoryVo> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
             BeanCopyUtils.beanCopy(categoryService.getRootCategory(id), CategoryVo::class.java)

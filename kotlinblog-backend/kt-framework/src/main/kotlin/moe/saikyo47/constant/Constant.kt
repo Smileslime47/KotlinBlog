@@ -7,6 +7,20 @@ class Constant {
         }
     }
 
+    class ApiPath {
+        companion object {
+            const val CATEGORY_API = "/api/category"
+            const val CATEGORY_ROOT_CATEGORIES = "/root-categories"
+            const val CATEGORY_SUB_CATEGORIES = "/sub-categories"
+            const val CATEGORY_ROOT_CATEGORY = "/root-category"
+
+            const val ARTICLE_API = "/api/article"
+            const val ARTICLE_INFO_BY_CATEGORY = "/info/category"
+            const val ARTICLE_INFO_BY_ID = "/info/article"
+            const val ARTICLE_DETAIL_BY_ID = "/detail/article"
+        }
+    }
+
     class DataField {
         companion object {
             const val ARTICLE_ID = "id"
