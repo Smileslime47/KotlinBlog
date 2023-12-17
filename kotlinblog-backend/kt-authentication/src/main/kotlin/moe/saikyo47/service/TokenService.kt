@@ -10,17 +10,10 @@ import moe.saikyo47.domain.entity.LoginResponse
 import org.springframework.stereotype.Service
 import java.security.Key
 import java.util.*
+import javax.crypto.SecretKey
 
 @Service
 class TokenService {
-//    private var secretKey: Key? = null
-    lateinit var secretKey: Key
-
-    @PostConstruct
-    private fun init() {
-        val key = "最強stronger"
-        secretKey = Keys.hmacShaKeyFor(key.toByteArray())
-    }
 
     public fun createToken(username: String, password: String): LoginResponse {
         val accessToken = createAccessToken(username)
@@ -28,5 +21,5 @@ class TokenService {
     }
 
     private fun createAccessToken(username: String): String =
-        Jwts.builder().subject(username).signWith(secretKey).compact()
+        Jwts.builder().subject(username).signWith(Jwts.SIG.HS256.key().build()).compact()
 }
