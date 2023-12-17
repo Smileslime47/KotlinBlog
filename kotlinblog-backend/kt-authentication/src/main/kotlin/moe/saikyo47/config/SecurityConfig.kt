@@ -1,5 +1,6 @@
 package moe.saikyo47.config
 
+import moe.saikyo47.enums.AppHttpCodeEnum
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -55,6 +56,15 @@ class SecurityConfig {
                 source.registerCorsConfiguration("/**", corsConfiguration)
                 //应用跨域策略
                 cors.configurationSource(source)
+            }
+            .exceptionHandling { exceptionHandling ->
+                exceptionHandling
+                    .authenticationEntryPoint { _, response, _ ->
+                        response.sendError(AppHttpCodeEnum.NEED_LOGIN.code)
+                    }
+                    .accessDeniedHandler { _, response, _ ->
+                        response.sendError(AppHttpCodeEnum.NO_OPERATOR_AUTH.code)
+                    }
             }
             .build()
 
