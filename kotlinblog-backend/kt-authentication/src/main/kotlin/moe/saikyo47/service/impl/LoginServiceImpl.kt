@@ -5,7 +5,7 @@ import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.domain.entity.User
 import moe.saikyo47.enums.AppHttpCodeEnum
 import moe.saikyo47.service.LoginService
-import moe.saikyo47.utils.JwtUtil
+import moe.saikyo47.service.TokenService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Lazy
 import org.springframework.security.authentication.AuthenticationManager
@@ -26,6 +26,13 @@ class LoginServiceImpl : LoginService {
     @Lazy
     lateinit var authenticationManager: AuthenticationManager
 
+    @Autowired
+    @Lazy
+    lateinit var tokenService: TokenService
+
+    // a simple in-memory hashmap to store the user information
+    final val userMap: MutableMap<String, User> = mutableMapOf()
+
     override fun login(user: User): ResponseResult<Any> {
         val token = UsernamePasswordAuthenticationToken(user.userName, user.password)
         val authentication = authenticationManager.authenticate(token)
@@ -35,8 +42,8 @@ class LoginServiceImpl : LoginService {
         }
 
         val loginUser: LoginUser = authentication.principal as LoginUser
-        val userId = loginUser.user.id.toString()
-        val jwt = JwtUtil.createJWT(userId)
+        val jwt = tokenService.createToken(loginUser.username, loginUser.password)
+        userMap[loginUser.user.id.toString()] = user
         return ResponseResult(AppHttpCodeEnum.SUCCESS, jwt)
     }
 }

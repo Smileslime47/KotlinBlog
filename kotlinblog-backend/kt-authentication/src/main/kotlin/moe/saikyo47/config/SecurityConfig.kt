@@ -1,9 +1,11 @@
 package moe.saikyo47.config
 
+import moe.saikyo47.constant.Constant
 import moe.saikyo47.enums.AppHttpCodeEnum
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod.POST
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
@@ -39,7 +41,16 @@ class SecurityConfig {
             //接口鉴权策略
             .authorizeHttpRequests { authorize ->
                 authorize
-                    .anyRequest().hasAuthority("ADMIN")
+                    // allowed for root-categories
+                    .requestMatchers(Constant.ApiPath.CATEGORY_API + Constant.ApiPath.CATEGORY_ROOT_CATEGORIES)
+                    .permitAll()
+                    .requestMatchers(Constant.ApiPath.ARTICLE_API + "/info/**")
+                    .permitAll()
+                    .requestMatchers(POST, "/api/login")
+                    .anonymous()
+                    .anyRequest()
+                    // leave a dummy authentication lambda here
+                    .permitAll()
             }
             //跨域访问策略
             .cors { cors ->
@@ -57,13 +68,16 @@ class SecurityConfig {
                 //应用跨域策略
                 cors.configurationSource(source)
             }
+            .csrf { csrf ->
+                csrf.disable()
+            }
             .exceptionHandling { exceptionHandling ->
                 exceptionHandling
                     .authenticationEntryPoint { _, response, _ ->
-                        response.sendError(AppHttpCodeEnum.NEED_LOGIN.code)
+                        response.sendError(AppHttpCodeEnum.NEED_LOGIN.code, "请登录")
                     }
                     .accessDeniedHandler { _, response, _ ->
-                        response.sendError(AppHttpCodeEnum.NO_OPERATOR_AUTH.code)
+                        response.sendError(AppHttpCodeEnum.NO_OPERATOR_AUTH.code, "无权限操作")
                     }
             }
             .build()

@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails
  * @since 2023-09-03
  */
 class LoginUser(val user: User) : UserDetails {
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        TODO("Not yet implemented")
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
+        return null;
     }
 
     override fun getPassword(): String = user.password!!
