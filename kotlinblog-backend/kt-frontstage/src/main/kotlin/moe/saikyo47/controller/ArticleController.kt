@@ -1,5 +1,6 @@
 package moe.saikyo47.controller
 
+import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.entity.Article
 import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.domain.vo.ArticleBriefVo
@@ -21,7 +22,8 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @CrossOrigin
-@RequestMapping("/api/article")
+@RequestMapping(Constant.ApiPath.ARTICLE_API)
+
 class ArticleController {
     @Autowired
     lateinit var articleService: ArticleService
@@ -34,7 +36,7 @@ class ArticleController {
      * @param id 分类ID
      * @param deep 是否搜索该分类下所有子分类的文章，若为false，则只搜索文章中所属分类ID为id的文章
      */
-    @GetMapping("/info/category")
+    @GetMapping(Constant.ApiPath.ARTICLE_INFO_BY_CATEGORY)
     fun getInfoByCategory(id: Long, deep: Boolean): ResponseResult<List<ArticleBriefVo>> {
         val searchStrategy: (id: Long) -> List<Article> =
             if (deep)
@@ -54,7 +56,7 @@ class ArticleController {
      * 
      * @param id 文章ID
      */
-    @GetMapping("/info/article")
+    @GetMapping(Constant.ApiPath.ARTICLE_INFO_BY_ID)
     fun getInfoById(id: Long): ResponseResult<ArticleBriefVo> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
@@ -69,7 +71,7 @@ class ArticleController {
      * 
      * @param id 文章ID
      */
-    @GetMapping("/detail/article")
+    @GetMapping(Constant.ApiPath.ARTICLE_DETAIL_BY_ID)
     fun getDetailById(id: Long): ResponseResult<ArticleDetailVo> {
         return ResponseResult(
             AppHttpCodeEnum.SUCCESS,
