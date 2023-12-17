@@ -1,4 +1,4 @@
-package mapper;
+package moe.saikyo47.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import moe.saikyo47.domain.entity.User

@@ -1,7 +1,7 @@
-package mapper;
+package moe.saikyo47.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import entity.Group
+import moe.saikyo47.domain.entity.Group
 
 /**
  * (Group)表数据库访问层

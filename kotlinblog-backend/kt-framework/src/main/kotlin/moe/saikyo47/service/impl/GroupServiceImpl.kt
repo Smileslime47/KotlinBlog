@@ -1,10 +1,10 @@
-package service.impl;
+package moe.saikyo47.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import entity.Group
-import mapper.GroupMapper
+import moe.saikyo47.domain.entity.Group
+import moe.saikyo47.mapper.GroupMapper
 import org.springframework.stereotype.Service;
-import service.GroupService
+import moe.saikyo47.service.GroupService
 
 /**
  * (Group)表服务实现类
