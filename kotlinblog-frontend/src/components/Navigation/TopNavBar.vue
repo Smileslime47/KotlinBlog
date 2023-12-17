@@ -4,6 +4,7 @@ import Constant from "~/constant/Constant";
 import httpService from "~/server/http";
 import {useDark} from "@vueuse/core";
 import routeTo from "~/router/routeTo";
+import fresh from "~/composables/fresh";
 
 //黑暗模式
 const navColor = ref()
@@ -21,7 +22,12 @@ const toggleDarkTheme = () => {
 }
 
 //挂载时获取根分类
-onMounted(() => getCategories())
+fresh(() => {
+  //TODO 鉴权获取用户信息
+
+  getCategories()}
+)
+
 //初始化分类列表
 const categoryList = ref([])
 //获取所有根分类
@@ -32,6 +38,7 @@ const getCategories = async () => {
     categoryList.value.push(...response.data.data)
   })
 }
+
 </script>
 <template>
   <el-menu :ellipsis="false" class="header-menu" mode="horizontal">
@@ -58,7 +65,7 @@ const getCategories = async () => {
       </button>
     </el-menu-item>
     <el-divider direction="vertical"/>
-    <el-menu-item>
+    <el-menu-item @click="routeTo.login()">
       <template #title>Login</template>
     </el-menu-item>
   </el-menu>

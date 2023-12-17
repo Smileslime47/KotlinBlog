@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import {useDark} from "@vueuse/core";
+import Constant from "~/constant/Constant";
+import avatar from '../../assets/avatar.jpg'
+import githubIcon from '../../assets/github.svg'
+import leetCodeIcon from '../../assets/leetCode.svg'
+
 const isReverse = ref("")
 useDark({
   onChanged(dark: boolean) {
@@ -10,7 +15,7 @@ useDark({
     }
   },
 })
-
+const avatarUrl = ref(Constant.ASSETS_URL + "/avatar.jpg")
 const githubProfileLink = ref("https://github.com/Smileslime47")
 const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
 </script>
@@ -20,7 +25,7 @@ const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
     <template #header>
       <div class="card-header">
         <el-space direction="vertical">
-          <el-avatar :size="100" src="avatar.jpg"/>
+          <el-avatar :size="100" :src="avatar"/>
           <el-text tag="b" size="large">Smile_slime_47</el-text>
         </el-space>
       </div>
@@ -29,10 +34,10 @@ const leetCodeProfileLink = ref("https://leetcode.cn/u/smile_slime_47/")
     <div class="profile-card-container">
       <el-space>
         <el-link :href="githubProfileLink">
-          <AdaptiveIcon size="30px" src="github.svg"/>
+          <AdaptiveIcon size="30px" :src="githubIcon"/>
         </el-link>
         <el-link :href="leetCodeProfileLink">
-          <AdaptiveIcon size="30px" src="leetcode.svg"/>
+          <AdaptiveIcon size="30px" :src="leetCodeIcon"/>
         </el-link>
       </el-space>
     </div>
