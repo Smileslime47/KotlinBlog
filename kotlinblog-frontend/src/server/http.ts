@@ -1,6 +1,7 @@
 import axios from "axios";
 import Constant from "~/constant/Constant";
 import routeTo from "~/router/routeTo";
+import token from "~/composables/token";
 
 const httpService = axios.create({
     baseURL: Constant.BASE_URL, //基础公共URL
@@ -39,6 +40,9 @@ httpService.interceptors.response.use(
             ElMessage.error("エロ発生："+response.data.code+(response.data.msg!=null?","+response.data.msg:""))
             if(response.data.code==401){
                 routeTo.login();
+            }
+            if(response.data.code==505){
+                token.removeToken();
             }
         }
         return response.data;

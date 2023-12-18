@@ -4,6 +4,7 @@ import httpService from "~/server/http";
 import Constant from "~/constant/Constant";
 import routeTo from "~/router/routeTo";
 import fresh from "~/composables/fresh";
+import token from "~/composables/token";
 
 const loginForm = reactive({
   userName: '',
@@ -24,7 +25,7 @@ const login = async () => {
       loginForm
   ).then(async (response) => {
     // console.log(response.data.data.accessToken)
-    window.localStorage.setItem('jwtToken', response.data.accessToken)
+    token.updateToken(response.data.accessToken)
     ElMessage.success("登陆成功！")
     // console.log(localStorage.getItem("jwtToken"))
     routeTo.fresh()
@@ -32,16 +33,16 @@ const login = async () => {
     ElMessage.error("用户名或密码错误")
   })
 }
-
 const register = async () => {
   await httpService.post(
       Constant.user.register,
       registerForm
   ).then(async (response) => {
     // console.log(response.data.data.accessToken)
-    window.localStorage.setItem('jwtToken', response.data.accessToken)
+    token.updateToken(response.data.accessToken)
     ElMessage.success("注册成功！")
     // console.log(localStorage.getItem("jwtToken"))
+    await routeTo.loadAndTo(routeTo.home)
     routeTo.fresh()
   })
 }

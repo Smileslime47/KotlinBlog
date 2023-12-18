@@ -6,6 +6,7 @@ import {useDark} from "@vueuse/core";
 import routeTo from "~/router/routeTo";
 import fresh from "~/composables/fresh";
 import {ArrowDown} from "@element-plus/icons-vue";
+import token from "~/composables/token";
 
 //黑暗模式
 const navColor = ref()
@@ -58,7 +59,7 @@ const getCategories = async () => {
   })
 }
 const logout = () => {
-  window.localStorage.removeItem("jwtToken")
+  token.removeToken()
   authenticated.value=false
   ElMessage.success("登出成功！")
 }
