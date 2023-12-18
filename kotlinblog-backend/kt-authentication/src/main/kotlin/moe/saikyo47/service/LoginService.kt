@@ -11,4 +11,6 @@ import moe.saikyo47.domain.entity.User
  */
 interface LoginService {
     fun login(user: User): ResponseResult<Any>
+    fun register(user: User): ResponseResult<Any>
+    fun getUserByToken(token: String?): User
 }

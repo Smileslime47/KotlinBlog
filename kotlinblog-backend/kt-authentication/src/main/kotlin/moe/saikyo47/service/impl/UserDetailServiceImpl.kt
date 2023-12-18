@@ -1,9 +1,12 @@
 package moe.saikyo47.service.impl
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
+import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.dto.LoginUser
+import moe.saikyo47.domain.entity.Group
 import moe.saikyo47.domain.entity.User
+import moe.saikyo47.mapper.GroupMapper
 import moe.saikyo47.mapper.UserMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Lazy
@@ -26,15 +29,23 @@ class UserDetailServiceImpl : UserDetailsService {
     @Lazy
     lateinit var userMapper: UserMapper
 
+    @Autowired
+    @Lazy
+    lateinit var groupMapper: GroupMapper
+
     override fun loadUserByUsername(username: String?): UserDetails {
-        val userWrapper = QueryWrapper<User>()
-        userWrapper.eq(Constant.DataField.USER_USER_NAME, username)
+        val userWrapper = KtQueryWrapper(User::class.java)
+        userWrapper.eq(User::userName, username)
         val user = userMapper.selectOne(userWrapper)
 
         if (Objects.isNull(user)) {
             throw RuntimeException("用户不存在")
         }
 
-        return LoginUser(user)
+        val groupWrapper = KtQueryWrapper(Group::class.java)
+        groupWrapper.eq(Group::id, user.permissionGroup)
+        val group = groupMapper.selectOne(groupWrapper)
+
+        return LoginUser(user, group)
     }
 }
