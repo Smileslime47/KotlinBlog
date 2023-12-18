@@ -1,18 +1,18 @@
 package moe.saikyo47.filter
 
+import io.jsonwebtoken.JwtException
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
-import moe.saikyo47.service.impl.LoginServiceImpl
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.security.authentication.AuthenticationManager
+import moe.saikyo47.service.TokenService
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.stereotype.Component
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.stereotype.Service
 import org.springframework.web.filter.OncePerRequestFilter
 
-@Component
-class AuthFilter : OncePerRequestFilter() {
+@Service
+class AuthFilter(val userDetailsService: UserDetailsService) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -21,14 +21,17 @@ class AuthFilter : OncePerRequestFilter() {
     ) {
         val token = request.getHeader("Authorization")
         if (token != null) {
-            System.out.println("token: $token")
-            if (LoginServiceImpl.userMap.containsKey(token)) {
-                System.out.println("userMap: ${LoginServiceImpl.userMap[token]}")
-                val user = LoginServiceImpl.userMap[token]
-                val authToken = UsernamePasswordAuthenticationToken(user?.userName, user?.password)
-                authToken.isAuthenticated = true
+            try {
+                val username = TokenService.parseToken(token).subject
+                val details = userDetailsService.loadUserByUsername(username)
+                val authToken = UsernamePasswordAuthenticationToken(details, null, details.authorities)
                 SecurityContextHolder.getContext().authentication = authToken
+            } catch (_: JwtException) {
+
+            } catch (_: IllegalArgumentException) {
+
             }
+
         }
         filterChain.doFilter(request, response)
     }

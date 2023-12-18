@@ -4,6 +4,7 @@ import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.enums.AppHttpCodeEnum
 import moe.saikyo47.filter.AuthFilter
+import moe.saikyo47.service.ArticleService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,6 +16,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -35,6 +37,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 class SecurityConfig {
     @Autowired
     lateinit var authenticationConfiguration: AuthenticationConfiguration
+
+    @Autowired
+   lateinit var userDetailService: UserDetailsService
 
     /**
      * Spring Security策略配置
@@ -87,8 +92,11 @@ class SecurityConfig {
                     }
             }
             .addFilterBefore(
-                AuthFilter(), UsernamePasswordAuthenticationFilter::class.java
+                AuthFilter (userDetailService), UsernamePasswordAuthenticationFilter::class.java
             )
+            .sessionManagement{
+                it.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            }
             .build()
 
     /**

@@ -8,12 +8,13 @@ import moe.saikyo47.mapper.ArticleMapper
 import moe.saikyo47.service.ArticleService
 import moe.saikyo47.service.CategoryService
 import moe.saikyo47.utils.FileHandler
+import org.springframework.beans.factory.InitializingBean
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
 
 @Service
-class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService {
+class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService{
     @Autowired
     @Lazy
     lateinit var categoryService: CategoryService
