@@ -5,6 +5,9 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import moe.saikyo47.domain.entity.LoginResponse
 import org.springframework.stereotype.Service
+import java.time.LocalDateTime
+import java.time.ZoneOffset
+import java.util.*
 import javax.crypto.SecretKey
 
 @Service
@@ -20,8 +23,8 @@ class TokenService {
             return LoginResponse(accessToken, refreshToken)
         }
 
-        private fun createAccessToken(username: String): String =
-            Jwts.builder().subject(username).signWith(secret).compact()
+        private fun createAccessToken(username: String): String = Jwts.builder().subject(username).signWith(secret)
+            .expiration(Date.from(LocalDateTime.now().toInstant(ZoneOffset.of("+8h")).plusSeconds(3600))).compact()
 
         private fun createRefreshToken(username: String, password: String): String =
             Jwts.builder().subject(username + password).signWith(secret).compact()

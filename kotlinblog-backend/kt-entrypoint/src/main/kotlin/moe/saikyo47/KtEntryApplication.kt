@@ -6,7 +6,7 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @MapperScan("moe.saikyo47.mapper")
-class KtFrontstageApplication
+class KtEntryApplication
 
 /**
  * 前台入口类
@@ -15,5 +15,5 @@ class KtFrontstageApplication
  * @since 2023-08-26
  */
 fun main(args: Array<String>) {
-    runApplication<KtFrontstageApplication>(*args)
+    runApplication<KtEntryApplication>(*args)
 }

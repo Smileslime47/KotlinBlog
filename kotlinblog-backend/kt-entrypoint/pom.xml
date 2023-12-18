@@ -9,7 +9,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>kt-frontstage</artifactId>
+    <artifactId>kt-entrypoint</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>

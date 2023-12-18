@@ -13,4 +13,8 @@ class GlobalExceptionHandler {
         return ResponseResult(AppHttpCodeEnum.LOGIN_ERROR, "无效的登陆状态")
     }
 
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun exceptionHandler(e: IllegalArgumentException): ResponseResult<Any> {
+        return ResponseResult(AppHttpCodeEnum.LOGIN_ERROR, "Cookie 非法")
+    }
 }
