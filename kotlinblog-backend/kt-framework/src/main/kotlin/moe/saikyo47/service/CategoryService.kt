@@ -9,8 +9,8 @@ import moe.saikyo47.domain.entity.Category
  * @author makejava
  * @since 2023-07-23 15:03:46
  */
-interface CategoryService : IService<Category>{
+interface CategoryService : IService<Category> {
     fun getRootCategories(): List<Category>
     fun getSubCategories(parentId: Long): List<Category>
-    fun getRootCategory(categoryId:Long):Category
+    fun getRootCategory(categoryId: Long): Category
 }

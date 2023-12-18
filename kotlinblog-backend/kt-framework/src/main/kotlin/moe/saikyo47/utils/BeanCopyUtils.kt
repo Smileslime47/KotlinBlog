@@ -31,7 +31,7 @@ class BeanCopyUtils {
          */
         fun <T : Any> beanListCopy(source: List<Any>, clazz: Class<T>): List<T> {
             return if (source.isEmpty())
-                //源列表为空时返回空列表
+            //源列表为空时返回空列表
                 ArrayList()
             else source
                 .map { obj -> beanCopy(obj, clazz) }

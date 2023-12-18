@@ -3,7 +3,6 @@ package moe.saikyo47.domain.entity
 import com.baomidou.mybatisplus.annotation.TableId
 import com.baomidou.mybatisplus.annotation.TableName
 import java.time.LocalDate
-import java.util.*
 
 @TableName("Article")
 data class Article(

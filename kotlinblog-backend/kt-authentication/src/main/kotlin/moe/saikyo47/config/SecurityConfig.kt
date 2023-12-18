@@ -5,6 +5,7 @@ import moe.saikyo47.enums.AppHttpCodeEnum
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod.GET
 import org.springframework.http.HttpMethod.POST
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationProvider
@@ -13,7 +14,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.crypto.password.NoOpPasswordEncoder
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsConfiguration
@@ -48,6 +49,8 @@ class SecurityConfig {
                     .permitAll()
                     .requestMatchers(POST, "/api/login")
                     .anonymous()
+                    .requestMatchers(GET, Constant.ApiPath.ARTICLE_API + Constant.ApiPath.ARTICLE_DETAIL_BY_ID)
+                    .authenticated()
                     .anyRequest()
                     // leave a dummy authentication lambda here
                     .permitAll()
@@ -91,7 +94,7 @@ class SecurityConfig {
 
     @Bean
     fun passwordEncoder(): PasswordEncoder {
-        return NoOpPasswordEncoder.getInstance()
+        return BCryptPasswordEncoder()
     }
 
     @Bean
