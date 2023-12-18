@@ -1,13 +1,14 @@
 package moe.saikyo47.service.impl
 
+import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.dto.LoginUser
 import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.domain.entity.User
 import moe.saikyo47.enums.AppHttpCodeEnum
-import moe.saikyo47.mapper.UserMapper
 import moe.saikyo47.service.LoginService
 import moe.saikyo47.service.TokenService
+import moe.saikyo47.service.UserService
 import moe.saikyo47.utils.Maybe.Companion.default
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Lazy
@@ -39,12 +40,7 @@ class LoginServiceImpl : LoginService {
 
     @Autowired
     @Lazy
-    lateinit var userMapper: UserMapper
-
-    // a simple in-memory hashmap to store the user information
-    companion object {
-        val userMap: MutableMap<String, User> = mutableMapOf()
-    }
+    lateinit var userService: UserService
 
     override fun login(user: User): ResponseResult<Any> {
         val token = UsernamePasswordAuthenticationToken(user.userName, user.password)
@@ -55,24 +51,23 @@ class LoginServiceImpl : LoginService {
         }
 
         val loginUser: LoginUser = authentication.principal as LoginUser
-        val jwt = tokenService.createToken(loginUser.username, loginUser.password)
-        userMap[jwt.accessToken] = loginUser.user
+        val jwt = TokenService.createToken(loginUser.username, loginUser.password)
         return ResponseResult(AppHttpCodeEnum.SUCCESS, jwt)
     }
 
     override fun register(user: User): ResponseResult<Any> {
         try {
             // check if duplicate username
-            val userWrapper = userMapper.selectById(user.userName)
-            if (Objects.isNull(userWrapper)) {
+            val userNameWrapper = userService.getOne(KtQueryWrapper(User()).eq(User::userName, user.userName))
+            if (Objects.isNull(userNameWrapper)) {
                 // check if duplicate email
-                val emailWrapper = userMapper.selectById(user.email)
+                val emailWrapper = userService.getOne(KtQueryWrapper(User()).eq(User::email, user.userName))
                 if (Objects.isNull(emailWrapper)) {
                     val pwd = passwordEncoder.encode(user.password)
                     val original = user.password
                     user.password = pwd
                     user.permissionGroup = Constant.Permission.USER
-                    userMapper.insert(user)
+                    userService.save(user)
                     user.password = original
                     return ResponseResult(AppHttpCodeEnum.SUCCESS, "注册成功", login(user))
                 } else {
@@ -88,12 +83,12 @@ class LoginServiceImpl : LoginService {
     }
 
     override fun getUserByToken(token: String?): User {
-        return userMap.getOrElse(
-            token.default("")
-        ) {
-            val user = User()
-            user.permissionGroup = Constant.Permission.GUEST
-            return user
+        if (token.isNullOrEmpty()) {
+            return User(permissionGroup = Constant.Permission.GUEST)
+        } else {
+            val userName = TokenService.parseToken(token).subject
+            return userService.getOne(KtQueryWrapper(User()).eq(User::userName, userName))
+                .default(User(permissionGroup = Constant.Permission.GUEST))
         }
 
     }
