@@ -7,7 +7,7 @@
 
       <el-main>
         <div style="height:60px"/>
-        <router-view></router-view>
+        <router-view v-if="isRouterAlive"></router-view>
       </el-main>
     </el-container>
   </el-config-provider>
@@ -33,4 +33,16 @@
 </style>
 
 <script setup>
+const isRouterAlive = ref(true)
+const reload = () => {
+  console.log("reload test")
+  isRouterAlive.value = false
+  nextTick(()=>{
+    isRouterAlive.value =true
+  })
+  // this.$nextTick(()=>{
+  //   isRouterAlive.value =true
+  // })
+}
+provide("reload",reload)
 </script>

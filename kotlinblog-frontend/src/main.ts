@@ -4,6 +4,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 import "~/styles/index.scss";
 import "uno.css";
 import "element-plus/theme-chalk/src/message.scss";
+import "~/styles/tokyo-night-dark.css";
 import router from "~/router/router";
 
 

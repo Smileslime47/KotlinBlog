@@ -5,15 +5,17 @@ import InfoPage from "~/page/InfoPage.vue";
 import {getPathParam} from "~/router/route";
 import routeTo from "~/router/routeTo";
 import fresh from "~/composables/fresh"
+import mdRender from "~/composables/mdRender";
 
 const articleId = ref(getPathParam("aid"))
 const directCategory = ref(getPathParam("cid"))
 const rootCategory = ref()
+const htmlContent = ref("")
 let article = ref({
   title:"",
+  content:"",
   createTime:"",
   updateTime:"",
-  
 })
 
 fresh(async (route) => {
@@ -26,16 +28,18 @@ fresh(async (route) => {
         params: {id: directCategory.value}
       })
       .then((response) => {
-        rootCategory.value = response.data.data.id
+        rootCategory.value = response.data.id
       })
   //获取文章信息
   await httpService.get(
-      Constant.article.api + Constant.article.getInfoById,
+      Constant.article.api + Constant.article.getDetailById,
       {
         params: {id: articleId.value}
       })
       .then((response) => {
-        article.value = response.data.data
+        console.log(response)
+        article.value = response.data
+        htmlContent.value = mdRender(article.value.content)
       })
 })
 
@@ -57,7 +61,7 @@ const backToArchive = () => routeTo.archive(rootCategory.value)
             <el-text>{{ article.createTime }}</el-text>
           </div>
         </template>
-        <MdTextArea :articleId="articleId"></MdTextArea>
+        <div class="mdText" v-html="htmlContent"></div>
       </el-card>
     </div>
   </InfoPage>

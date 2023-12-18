@@ -26,7 +26,7 @@ fresh(async (route) => {
         console.log(rootCategory.value)
         articleList.value = []
         //将获取到的文章列表加入List
-        articleList.value.push(...response.data.data)
+        articleList.value.push(...response.data)
         //根据日期排序文章列表
         articleList.value.sort((a, b) => a.createTime <= b.createTime ? 1 : -1)
         console.log(articleList.value)
