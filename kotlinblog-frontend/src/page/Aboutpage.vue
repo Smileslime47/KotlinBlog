@@ -1,108 +1,72 @@
+<script lang="ts" setup>
+import { ref } from 'vue'
+import avatar from '../assets/avatar.jpg'
+import fresh from "~/composables/fresh";
+import mdRender from "~/composables/mdRender";
+import httpService from "~/server/http";
+import Constant from "~/constant/Constant";
+
+const aboutContent = ref("")
+fresh(async () => {
+  await httpService.get(
+      Constant.article.api+Constant.article.getDetailById,
+      {
+        params: {id: 0}
+      }).then((response)=>{
+        aboutContent.value=mdRender(response.data.content)
+  })
+})
+</script>
+
 <template>
-  <div class="Home">
-    <div class ="banner">
-      <p class="big-title">Hi there</p>
-      <h1 class="title">Smile_slime_47</h1>
-      <div class="divider" />
-      <blockquote class="quote">
-        <p>Let us go then, you and I.</p>
-        <p>When the Eleven-Day Empire eats the sky.</p>
-        <p>Like a humanoid melting like clams upon the breakfast table.</p>
-      </blockquote>
-    </div>
-  </div>
+  <el-container>
+    <el-aside style="width: 400px;min-height: 1000px">
+        <el-card style="max-width: 260px" :body-style="{ padding: '0px' }">
+          <img :src="avatar" class="image"/>
+          <div style="padding: 14px">
+            <span>Smile_slime_47</span>
+            <div class="bottom">
+              <el-button text class="button">刘一邦</el-button>
+            </div>
+          </div>
+        </el-card>
+    </el-aside>
+    <el-main>
+      <div class="mdText" v-html="aboutContent"></div>
+    </el-main>
+  </el-container>
 </template>
 
 <style scoped>
-.Home {
-  padding: 64px 24px 96px;
-  height: 100vh;
-  text-align: center;
-  display:flex;
-  flex-direction:column;
-  background-image:url("background.jpg");
-  background-size:cover;
-  background-repeat:no-repeat;
-  background-position:center center;
-  justify-content: center;
+.time {
+  font-size: 12px;
+  color: #999;
 }
 
-@media (min-width: 768px) {
-  .Home {
-    padding: 96px 32px 168px;
-  }
-
-  .banner {
-    margin-left: 25vw;
-    margin-right: 25vw;
-  }
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@media (max-width: 768px) {
-  .banner {
-    margin:0px;
-  }
+.button {
+  padding: 0;
+  min-height: auto;
 }
 
-.banner {
-  border-color: white;
-  border-radius: 30px;
-  border-width: 1px;
-  border-style: solid;
-  background-color: #32323232;
-  backdrop-filter: blur(2px);
-  min-height: 30vh;
-  justify-content: center;
+.image {
+  width: 100%;
+  display: block;
+}
+.ep-main{
+  padding: 1em;
+}
+.ep-aside{
+  padding-top:1em;
   display: flex;
   flex-direction: column;
-  overflow:hidden;
-}
-
-
-.big-title {
-  line-height: 64px;
-  font-size: 64px;
-  font-weight: 600;
-  color:white
-}
-
-.title {
-  padding-top: 12px;
-  letter-spacing: 2px;
-  line-height: 20px;
-  font-size: 20px;
-  font-weight: 700;
-  color:white
-}
-
-.divider {
-  margin: 24px auto 18px;
-  width: 64px;
-  height: 1px;
-  opacity:1;
-}
-
-.quote {
-  border-top:2px solid white;
-  padding-top:10px;
-  margin: 0 auto;
-  max-width: 512px;
-  font-size: 14px;
-  font-weight: 500;
-  color:white;
-}
-
-.action {
-  padding-top: 20px;
-}
-
-.link {
-  display: inline-block;
-  border: 1px solid var(--vp-c-brand);
-  border-radius: 16px;
-  padding: 3px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: border-color 0.25s, color .25s;
+  align-items: center;
 }
 </style>

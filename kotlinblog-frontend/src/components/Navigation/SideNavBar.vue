@@ -22,7 +22,7 @@ fresh(async (route) => {
         params: {id: directCategory.value}
       })
       .then((response) => {
-        rootCategory.value = response.data.data.id
+        rootCategory.value = response.data.id
       })
   //获取根分类的子分类
   await httpService.get(
@@ -30,7 +30,7 @@ fresh(async (route) => {
       {params: {id: rootCategory.value}})
       .then((response) => {
         subCategories.value = []
-        subCategories.value.push(...response.data.data)
+        subCategories.value.push(...response.data)
       })
   //获取子分类的文章列表
   for (const subCategory of subCategories.value) {
@@ -43,7 +43,7 @@ fresh(async (route) => {
           }
         })
         .then((response) => {
-          subCategory.articles = response.data.data
+          subCategory.articles = response.data
         })
   }
   //获取根分类的文章列表
@@ -57,7 +57,7 @@ fresh(async (route) => {
       })
       .then((response) => {
         rootArticles.value = []
-        rootArticles.value.push(...response.data.data)
+        rootArticles.value.push(...response.data)
       })
 })
 </script>
