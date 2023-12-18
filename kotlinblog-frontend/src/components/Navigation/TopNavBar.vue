@@ -5,6 +5,7 @@ import httpService from "~/server/http";
 import {useDark} from "@vueuse/core";
 import routeTo from "~/router/routeTo";
 import fresh from "~/composables/fresh";
+import {ArrowDown} from "@element-plus/icons-vue";
 
 //黑暗模式
 const navColor = ref()
@@ -17,15 +18,33 @@ useDark({
     }
   },
 })
-const toggleDarkTheme = () => {
+const toggleDarkTheme = ()=>{
   toggleDark();
 }
+const reload = inject("reload")
+const authenticated = ref()
+const currentUser = ref({
+  userName:"",
+  nickName:"",
+  permissionGroup:"",
+  email:"",
+  phoneNumber:"",
+  sex:"",
+  avatar:"",
+})
 
 //挂载时获取根分类
-fresh(() => {
-  //TODO 鉴权获取用户信息
+fresh(async (route) => {
+  await httpService.get(
+      Constant.user.api+Constant.user.getCurrentUser
+  ).then((response)=>{
+    currentUser.value = response.data
+    console.log(route.path)
+    console.log(currentUser.value)
+    authenticated.value = currentUser.value.permissionGroup != 0;
+  })
 
-  getCategories()}
+  await getCategories()}
 )
 
 //初始化分类列表
@@ -35,8 +54,13 @@ const getCategories = async () => {
   await httpService.get(
       Constant.BASE_URL + Constant.category.api + Constant.category.getRootCategories
   ).then((response) => {
-    categoryList.value.push(...response.data.data)
+    categoryList.value.push(...response.data)
   })
+}
+const logout = () => {
+  window.localStorage.removeItem("jwtToken")
+  authenticated.value=false
+  ElMessage.success("登出成功！")
 }
 
 </script>
@@ -65,9 +89,29 @@ const getCategories = async () => {
       </button>
     </el-menu-item>
     <el-divider direction="vertical"/>
-    <el-menu-item @click="routeTo.login()">
+
+    <el-menu-item v-if="!authenticated" @click="routeTo.login()">
       <template #title>Login</template>
     </el-menu-item>
+    <el-dropdown v-else>
+      <el-menu-item>
+        <template #title>
+          {{currentUser.nickName}}
+          <el-icon class="el-icon--right">
+            <arrow-down />
+          </el-icon>
+        </template>
+      </el-menu-item>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item>Action 1</el-dropdown-item>
+          <el-dropdown-item>Action 2</el-dropdown-item>
+          <el-dropdown-item>Action 3</el-dropdown-item>
+          <el-dropdown-item disabled>Action 4</el-dropdown-item>
+          <el-dropdown-item @click="logout" divided>登出</el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </el-dropdown>
   </el-menu>
 </template>
 
