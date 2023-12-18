@@ -13,6 +13,11 @@ const Constant = {
         getInfoById: "/info/article",
         getDetailById: "/detail/article"
     },
-    login: "/login",
+    user:{
+        api:"/user",
+        login: "/login",
+        register:"/register",
+        getCurrentUser:"/currentUser"
+    }
 }
 export default Constant
