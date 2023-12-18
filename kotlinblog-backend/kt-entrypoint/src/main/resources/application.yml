@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/47saikyo?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: 114514
     driver-class-name: org.mariadb.jdbc.Driver
   servlet:
     multipart:
@@ -20,4 +20,6 @@ mybatis-plus:
       logic-delete-value: 1
       logic-not-delete-value: 0
       id-type: auto
+      table-format: "`%s`"
+
 

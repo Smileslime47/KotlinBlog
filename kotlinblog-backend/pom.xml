@@ -11,7 +11,7 @@
     </parent>
     <modules>
         <module>kt-framework</module>
-        <module>kt-frontstage</module>
+        <module>kt-entrypoint</module>
         <module>kt-authentication</module>
     </modules>
 
