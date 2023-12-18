@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import '~/styles/index.scss'
+import kotlinIcon from '../../assets/kotlin.svg'
+import typescriptIcon from '../../assets/typescript.svg'
+import digitaloceanIcon from '../../assets/digitalocean.svg'
 </script>
 
 <template>
@@ -15,7 +18,7 @@ import '~/styles/index.scss'
     <div class="frame-card-container">
       <el-space direction="vertical">
           <el-text style="height:35px;font-size: 35px;vertical-align:central">
-            <AdaptiveIcon size="30px" src="kotlin.svg"/>
+            <AdaptiveIcon size="30px" :src="kotlinIcon"/>
             Kotlin
           </el-text>
           <el-text style="font-size: 20px">
@@ -23,7 +26,7 @@ import '~/styles/index.scss'
           </el-text>
 
         <el-text style="font-size: 35px">
-          <AdaptiveIcon size="30px" src="typescript.svg"/>
+          <AdaptiveIcon size="30px" :src="typescriptIcon"/>
           TypeScript
         </el-text>
         <el-text class="icon" style="font-size: 20px">
@@ -31,7 +34,7 @@ import '~/styles/index.scss'
         </el-text>
 
         <el-text style="font-size: 35px">
-          <AdaptiveIcon size="30px" src="digitalocean.svg"/>
+          <AdaptiveIcon size="30px" :src="digitaloceanIcon"/>
           Digital Ocean
         </el-text>
         <el-text style="font-size: 20px">

@@ -1,5 +1,6 @@
 import axios from "axios";
 import Constant from "~/constant/Constant";
+import routeTo from "~/router/routeTo";
 
 const httpService = axios.create({
     baseURL: Constant.BASE_URL, //基础公共URL
@@ -11,9 +12,8 @@ httpService.interceptors.request.use(
     //发生请求拦截
     (config) => {
         // 如果开启 token 认证
-        // if (serverConfig.useTokenAuthorization) {
-        //     config.headers["Authorization"] = localStorage.getItem("token"); // 请求头携带 token
-        // }
+        config.headers["Authorization"] = localStorage.getItem("jwtToken"); // 请求头携带 token
+
         // 设置请求头
         if (!config.headers["content-type"]) { // 如果没有设置请求头
             if (config.method === 'post') {
@@ -40,7 +40,12 @@ httpService.interceptors.response.use(
     },
     (error) => {
         // 超出 2xx 范围的状态码都会触发该函数。
-        ElMessage.error("Http异常："+error.response.status+","+error.response.statusText)
+        if (error.response.status === 401) {
+            ElMessage.error("Http异常：" + error.response.status + ",请登录")
+            routeTo.login();
+        } else {
+            ElMessage.error("Http异常：" + error.response.status + "," + error.response.statusText)
+        }
         return Promise.reject(error);
     }
 );
