@@ -1,7 +1,5 @@
 package moe.saikyo47.domain.entity;
 
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId
 import com.baomidou.mybatisplus.annotation.TableName
 import java.util.*
 

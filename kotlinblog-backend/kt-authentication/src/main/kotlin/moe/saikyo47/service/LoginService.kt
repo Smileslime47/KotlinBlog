@@ -10,5 +10,5 @@ import moe.saikyo47.domain.entity.User
  * @since 2023-09-03
  */
 interface LoginService {
-    fun login(user: User):ResponseResult<Any>
+    fun login(user: User): ResponseResult<Any>
 }

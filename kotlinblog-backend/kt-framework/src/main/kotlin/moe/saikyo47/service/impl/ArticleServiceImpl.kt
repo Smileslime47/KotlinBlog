@@ -1,6 +1,5 @@
 package moe.saikyo47.service.impl
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
 import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
 import moe.saikyo47.constant.Constant
@@ -12,7 +11,6 @@ import moe.saikyo47.utils.FileHandler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
-import java.net.URL
 
 @Service
 class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService {
@@ -50,7 +48,7 @@ class ArticleServiceImpl : ServiceImpl<ArticleMapper, Article>(), ArticleService
     }
 
     override fun getArticleById(articleId: Long): Article {
-        val articleWrapper=KtQueryWrapper(Article())
+        val articleWrapper = KtQueryWrapper(Article())
         articleWrapper.eq(Article::id, articleId)
         val article = getOne(articleWrapper)
         if (article.content?.startsWith("/") == true) {

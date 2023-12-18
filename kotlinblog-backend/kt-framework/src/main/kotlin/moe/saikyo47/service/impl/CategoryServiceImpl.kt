@@ -1,15 +1,11 @@
 package moe.saikyo47.service.impl
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper
 import com.baomidou.mybatisplus.extension.kotlin.KtQueryWrapper
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl
 import moe.saikyo47.constant.Constant
 import moe.saikyo47.domain.entity.Category
 import moe.saikyo47.mapper.CategoryMapper
-import moe.saikyo47.service.ArticleService
 import moe.saikyo47.service.CategoryService
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
 
 /**

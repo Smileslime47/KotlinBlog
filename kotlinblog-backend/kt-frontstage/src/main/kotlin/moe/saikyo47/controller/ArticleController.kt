@@ -32,7 +32,7 @@ class ArticleController {
      * 根据分类获取分类下文章的简要信息
      *
      * 接口：/info/category
-     * 
+     *
      * @param id 分类ID
      * @param deep 是否搜索该分类下所有子分类的文章，若为false，则只搜索文章中所属分类ID为id的文章
      */
@@ -53,7 +53,7 @@ class ArticleController {
      * 根据文章ID获取文章的简要信息
      *
      * 接口：/info/article
-     * 
+     *
      * @param id 文章ID
      */
     @GetMapping(Constant.ApiPath.ARTICLE_INFO_BY_ID)
@@ -68,7 +68,7 @@ class ArticleController {
      * 根据文章ID获取文章的详细信息，包括文章内容
      *
      * 接口：/detail/article
-     * 
+     *
      * @param id 文章ID
      */
     @GetMapping(Constant.ApiPath.ARTICLE_DETAIL_BY_ID)
