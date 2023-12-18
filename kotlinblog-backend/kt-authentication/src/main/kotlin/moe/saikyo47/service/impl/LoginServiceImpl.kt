@@ -43,7 +43,7 @@ class LoginServiceImpl : LoginService {
 
         val loginUser: LoginUser = authentication.principal as LoginUser
         val jwt = tokenService.createToken(loginUser.username, loginUser.password)
-        userMap[loginUser.user.id.toString()] = user
+        userMap[jwt.toString()] = user
         return ResponseResult(AppHttpCodeEnum.SUCCESS, jwt)
     }
 }
