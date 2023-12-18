@@ -4,6 +4,7 @@ class Constant {
     class Environment {
         companion object {
             const val RESOURCE_PATH = "D:\\blog\\KotlinBlog\\posts"
+            const val CATEGORY_API = "/api/category"
         }
     }
 
@@ -35,6 +36,14 @@ class Constant {
 
             const val USER_USER_NAME = "user_name"
             const val USER_PASSWORD = "password"
+            const val USER_GROUP = "permission_group"
+        }
+    }
+
+    class Permission {
+        companion object {
+            const val GUEST = 0L
+            const val USER = 4L
         }
     }
 

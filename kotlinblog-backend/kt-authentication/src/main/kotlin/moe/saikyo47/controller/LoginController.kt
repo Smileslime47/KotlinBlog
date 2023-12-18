@@ -4,9 +4,7 @@ import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.domain.entity.User
 import moe.saikyo47.service.LoginService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api")
@@ -15,10 +13,12 @@ class LoginController {
     lateinit var loginService: LoginService
 
     @PostMapping("/login")
-    fun login(username: String, password: String): ResponseResult<Any> {
-        val user = User()
-        user.userName = username
-        user.password = password
+    fun login(@RequestBody user: User): ResponseResult<Any> {
         return loginService.login(user)
+    }
+
+    @PostMapping("/register")
+    fun register(@RequestBody user: User): ResponseResult<Any> {
+        return loginService.register(user)
     }
 }

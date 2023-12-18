@@ -1,7 +1,9 @@
 package moe.saikyo47.config
 
 import moe.saikyo47.constant.Constant
+import moe.saikyo47.domain.entity.ResponseResult
 import moe.saikyo47.enums.AppHttpCodeEnum
+import moe.saikyo47.filter.AuthFilter
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
@@ -76,13 +79,16 @@ class SecurityConfig {
             }
             .exceptionHandling { exceptionHandling ->
                 exceptionHandling
-                    .authenticationEntryPoint { _, response, _ ->
-                        response.sendError(AppHttpCodeEnum.NEED_LOGIN.code, "请登录")
+                    .authenticationEntryPoint { _, _, _ ->
+                        ResponseResult<Unit>(AppHttpCodeEnum.NEED_LOGIN, "请登录后访问")
                     }
-                    .accessDeniedHandler { _, response, _ ->
-                        response.sendError(AppHttpCodeEnum.NO_OPERATOR_AUTH.code, "无权限操作")
+                    .accessDeniedHandler { _, _, _ ->
+                        ResponseResult<Unit>(AppHttpCodeEnum.NO_OPERATOR_AUTH, "无权限操作")
                     }
             }
+            .addFilterBefore(
+                AuthFilter(), UsernamePasswordAuthenticationFilter::class.java
+            )
             .build()
 
     /**

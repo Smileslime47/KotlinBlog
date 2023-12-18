@@ -1,5 +1,6 @@
 package moe.saikyo47.domain.dto
 
+import moe.saikyo47.domain.entity.Group
 import moe.saikyo47.domain.entity.User
 import moe.saikyo47.mapper.GroupMapper
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,14 +13,10 @@ import org.springframework.security.core.userdetails.UserDetails
  * @author Smile_slime_47
  * @since 2023-09-03
  */
-class LoginUser(val user: User) : UserDetails {
-    @Suppress("SpringJavaInjectionPointsAutowiringInspection")
-    @Autowired
-    lateinit var groupMapper: GroupMapper
+class LoginUser(val user: User, val group: Group) : UserDetails {
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority>? {
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         val authorities: MutableList<GrantedAuthority> = mutableListOf()
-        val group = groupMapper.selectById(user.permissionGroup)
         if (group.permissionLogin == 1) {
             authorities.add(GrantedAuthority { "LOGIN" })
         }
